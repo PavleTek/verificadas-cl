@@ -1,0 +1,38 @@
+<div class="surface-section px-4 py-8 md:px-6 lg:px-8">
+  <p-toast></p-toast>
+  <div class="flex justify-content-center">
+    <div>
+      <div class="p-fluid pr-0 md:pr-6">
+        <div class="field">
+          <label for="name" class="font-medium w-full text-center">Nombre</label>
+          <input id="name" type="text" [(ngModel)]="name" pInputText class="py-3 px-2 text-lg" />
+        </div>
+        <div class="field">
+          <label for="email" class="font-medium w-full text-center">Email</label>
+          <input id="email" type="text" [(ngModel)]="email" pInputText class="py-3 px-2 text-lg" />
+        </div>
+        <div class="field">
+          <label for="phoneNumber" class="font-medium w-full text-center">Numero Telefonico</label>
+          <p-inputMask mask="+99 999999999" [(ngModel)]="phoneNumber" placeholder="+56 9xxxxxxxx" class="py-3 text-lg"></p-inputMask>
+        </div>
+        <div class="field">
+          <label for="message" class="font-medium w-full text-center">Tipo de plan</label>
+          <p-dropdown
+            [options]="paymentTierOptions"
+            [(ngModel)]="selectedPaymentTierOption"
+            placeholder="Plan en el que esta interesada"
+            [editable]="false"
+          ></p-dropdown>
+        </div>
+        <div class="field">
+          <label for="message" class="font-medium w-full text-center">Mensaje</label>
+          <textarea id="message" pInputTextarea rows="6" [(ngModel)]="message" [autoResize]="true" class="py-3 px-2 text-lg"></textarea>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <button pButton pRipple label="Captcha!" icon="pi pi-send" class="w-auto"></button>
+          <button pButton pRipple label="Postula!" icon="pi pi-send" class="w-auto" (click)="anounce()"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="flex flex-column w-full justify-content-center gap-6 sm:gap-0">
+  <div class="flex align-items-center justify-content-start mt-8 sm:ml-8">
+    <div>
+      <span class="flex align-items-center justify-content-center surface-100 border-round mr-3" style="height: 3rem; width: 3rem">
+        <i class="pi pi-phone text-900 text-4xl"></i>
+      </span>
+    </div>
+    <div>
+      <span class="text-lg text-900 mb-1 font-medium">Telefono</span>
+      <p class="text-700 m-0">+56 9 3669 6411</p>
+    </div>
+  </div>
+  <div class="flex align-items-center justify-content-start sm:mt-8 sm:ml-8">
+    <div (click)="sendWhatsapp()" class="cursor-pointer">
+      <span class="flex align-items-center justify-content-center surface-100 border-round mr-3" style="height: 3rem; width: 3rem">
+        <i class="pi pi-whatsapp text-900 text-4xl"></i>
+      </span>
+    </div>
+    <div>
+      <span class="text-lg text-900 mb-1 font-medium">Whatsapp</span>
+      <p class="text-700 m-0">+56 9 3669 6411</p>
+    </div>
+  </div>
+  <div class="flex align-items-center justify-content-start mb-8 sm:my-8 sm:ml-8">
+    <div>
+      <span class="flex align-items-center justify-content-center surface-100 border-round mr-3" style="height: 3rem; width: 3rem">
+        <i class="pi pi-envelope text-900 text-4xl"></i>
+      </span>
+    </div>
+    <div>
+      <span class="text-lg text-900 mb-1 font-medium">eMail</span>
+      <p class="text-700 m-0">{{ mail }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,291 @@
+<div class="surface-ground px-4 pt-2 md:px-6 lg:px-8">
+  <div class="grid -mt-3 -ml-3 -mr-3 mb-2">
+    <ng-container *ngIf="premiumAndSpecialGirls.length">
+      <ng-container *ngFor="let girl of premiumAndSpecialGirls">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+          <div class="p-1 h-full">
+            <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
+              <div class="relative mb-3 image-container">
+                <img [src]="girl.images.bluredFace[0]" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
+                <ng-template #elseBluredFace>
+                  <img [src]="girl.images.active[0]" class="display-image border-round" />
+                </ng-template>
+              </div>
+              <div class="data-container">
+                <div class="flex flex-wrap justify-content-between align-items-center mb-1">
+                  <span class="text-900 font-medium xl:text-2xl white-space-nowrap">{{ formatName(girl.name) }}{{ " " }}{{ getAgeFromBday(girl.bday) }}</span>
+                  <span class="text-primary xl:text-2xl font-medium white-space-nowrap">{{ formatPrice(girl.sessionPrices.oneHourPrice) }}</span>
+                </div>
+                <p class="mt-0 mb-0 text-600 line-height-2 hidden sm:block" *ngIf="showSpecificLocation(girl)">Ubicacion: {{ girl.specificLocation.name }}</p>
+                <div *ngIf="girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">Cuenta con estacionamiento</p>
+                </div>
+                <div *ngIf="!girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">&nbsp;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <!-- TEMPORARY MUST DELETE BEFORE LAUNCH -->
+    <ng-container *ngIf="premiumAndSpecialGirls.length">
+      <ng-container *ngFor="let girl of premiumAndSpecialGirls">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+          <div class="p-1 h-full">
+            <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
+              <div class="relative mb-3 image-container">
+                <img [src]="girl.images.bluredFace[0]" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
+                <ng-template #elseBluredFace>
+                  <img [src]="girl.images.active[0]" class="display-image border-round" />
+                </ng-template>
+              </div>
+              <div class="data-container">
+                <div class="flex flex-wrap justify-content-between align-items-center mb-1">
+                  <span class="text-900 font-medium xl:text-2xl white-space-nowrap">{{ formatName(girl.name) }}{{ " " }}{{ getAgeFromBday(girl.bday) }}</span>
+                  <span class="text-primary xl:text-2xl font-medium white-space-nowrap">{{ formatPrice(girl.sessionPrices.oneHourPrice) }}</span>
+                </div>
+                <p class="mt-0 mb-0 text-600 line-height-2 hidden sm:block" *ngIf="showSpecificLocation(girl)">Ubicacion: {{ girl.specificLocation.name }}</p>
+                <div *ngIf="girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">Cuenta con estacionamiento</p>
+                </div>
+                <div *ngIf="!girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">&nbsp;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="premiumAndSpecialGirls.length">
+      <ng-container *ngFor="let girl of premiumAndSpecialGirls">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+          <div class="p-1 h-full">
+            <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
+              <div class="relative mb-3 image-container">
+                <img [src]="girl.images.bluredFace[0]" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
+                <ng-template #elseBluredFace>
+                  <img [src]="girl.images.active[0]" class="display-image border-round" />
+                </ng-template>
+              </div>
+              <div class="data-container">
+                <div class="flex flex-wrap justify-content-between align-items-center mb-1">
+                  <span class="text-900 font-medium xl:text-2xl white-space-nowrap">{{ formatName(girl.name) }}{{ " " }}{{ getAgeFromBday(girl.bday) }}</span>
+                  <span class="text-primary xl:text-2xl font-medium white-space-nowrap">{{ formatPrice(girl.sessionPrices.oneHourPrice) }}</span>
+                </div>
+                <p class="mt-0 mb-0 text-600 line-height-2 hidden sm:block" *ngIf="showSpecificLocation(girl)">Ubicacion: {{ girl.specificLocation.name }}</p>
+                <div *ngIf="girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">Cuenta con estacionamiento</p>
+                </div>
+                <div *ngIf="!girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">&nbsp;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="premiumAndSpecialGirls.length">
+      <ng-container *ngFor="let girl of premiumAndSpecialGirls">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+          <div class="p-1 h-full">
+            <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
+              <div class="relative mb-3 image-container">
+                <img [src]="girl.images.bluredFace[0]" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
+                <ng-template #elseBluredFace>
+                  <img [src]="girl.images.active[0]" class="display-image border-round" />
+                </ng-template>
+              </div>
+              <div class="data-container">
+                <div class="flex flex-wrap justify-content-between align-items-center mb-1">
+                  <span class="text-900 font-medium xl:text-2xl white-space-nowrap">{{ formatName(girl.name) }}{{ " " }}{{ getAgeFromBday(girl.bday) }}</span>
+                  <span class="text-primary xl:text-2xl font-medium white-space-nowrap">{{ formatPrice(girl.sessionPrices.oneHourPrice) }}</span>
+                </div>
+                <p class="mt-0 mb-0 text-600 line-height-2 hidden sm:block" *ngIf="showSpecificLocation(girl)">Ubicacion: {{ girl.specificLocation.name }}</p>
+                <div *ngIf="girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">Cuenta con estacionamiento</p>
+                </div>
+                <div *ngIf="!girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">&nbsp;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="premiumAndSpecialGirls.length">
+      <ng-container *ngFor="let girl of premiumAndSpecialGirls">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+          <div class="p-1 h-full">
+            <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
+              <div class="relative mb-3 image-container">
+                <img [src]="girl.images.bluredFace[0]" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
+                <ng-template #elseBluredFace>
+                  <img [src]="girl.images.active[0]" class="display-image border-round" />
+                </ng-template>
+              </div>
+              <div class="data-container">
+                <div class="flex flex-wrap justify-content-between align-items-center mb-1">
+                  <span class="text-900 font-medium xl:text-2xl white-space-nowrap">{{ formatName(girl.name) }}{{ " " }}{{ getAgeFromBday(girl.bday) }}</span>
+                  <span class="text-primary xl:text-2xl font-medium white-space-nowrap">{{ formatPrice(girl.sessionPrices.oneHourPrice) }}</span>
+                </div>
+                <p class="mt-0 mb-0 text-600 line-height-2 hidden sm:block" *ngIf="showSpecificLocation(girl)">Ubicacion: {{ girl.specificLocation.name }}</p>
+                <div *ngIf="girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">Cuenta con estacionamiento</p>
+                </div>
+                <div *ngIf="!girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">&nbsp;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="premiumAndSpecialGirls.length">
+      <ng-container *ngFor="let girl of premiumAndSpecialGirls">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+          <div class="p-1 h-full">
+            <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
+              <div class="relative mb-3 image-container">
+                <img [src]="girl.images.bluredFace[0]" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
+                <ng-template #elseBluredFace>
+                  <img [src]="girl.images.active[0]" class="display-image border-round" />
+                </ng-template>
+              </div>
+              <div class="data-container">
+                <div class="flex flex-wrap justify-content-between align-items-center mb-1">
+                  <span class="text-900 font-medium xl:text-2xl white-space-nowrap">{{ formatName(girl.name) }}{{ " " }}{{ getAgeFromBday(girl.bday) }}</span>
+                  <span class="text-primary xl:text-2xl font-medium white-space-nowrap">{{ formatPrice(girl.sessionPrices.oneHourPrice) }}</span>
+                </div>
+                <p class="mt-0 mb-0 text-600 line-height-2 hidden sm:block" *ngIf="showSpecificLocation(girl)">Ubicacion: {{ girl.specificLocation.name }}</p>
+                <div *ngIf="girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">Cuenta con estacionamiento</p>
+                </div>
+                <div *ngIf="!girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">&nbsp;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="premiumAndSpecialGirls.length">
+      <ng-container *ngFor="let girl of premiumAndSpecialGirls">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+          <div class="p-1 h-full">
+            <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
+              <div class="relative mb-3 image-container">
+                <img [src]="girl.images.bluredFace[0]" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
+                <ng-template #elseBluredFace>
+                  <img [src]="girl.images.active[0]" class="display-image border-round" />
+                </ng-template>
+              </div>
+              <div class="data-container">
+                <div class="flex flex-wrap justify-content-between align-items-center mb-1">
+                  <span class="text-900 font-medium xl:text-2xl white-space-nowrap">{{ formatName(girl.name) }}{{ " " }}{{ getAgeFromBday(girl.bday) }}</span>
+                  <span class="text-primary xl:text-2xl font-medium white-space-nowrap">{{ formatPrice(girl.sessionPrices.oneHourPrice) }}</span>
+                </div>
+                <p class="mt-0 mb-0 text-600 line-height-2 hidden sm:block" *ngIf="showSpecificLocation(girl)">Ubicacion: {{ girl.specificLocation.name }}</p>
+                <div *ngIf="girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">Cuenta con estacionamiento</p>
+                </div>
+                <div *ngIf="!girl.parking" class="hidden sm:block">
+                  <p class="mt-0 mb-0 pb-3 text-600 line-height-2">&nbsp;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <!-- TEMPORARY MUST DELETE BEFORE LAUNCH -->
+    <ng-container *ngIf="regularGirls.length">
+      <ng-container *ngFor="let girlPair of regularGirls">
+        <div class="col-6 md:col-6 lg:col-4 xl:col-3 minimal-reg-padding">
+          <div class="flex flex-column">
+            <div class="mid-height my-regular-card mb-3" *ngIf="girlPair.length > 0" (click)="goToGirlPage(girlPair[0].id)">
+              <div class="h-full">
+                <div class="shadow-2 p-2 surface-card border-round h-full">
+                  <div class="relative mb-1 regular-image-container">
+                    <img [src]="girlPair[0].images.bluredFace[0]" *ngIf="girlPair[0].bluredFace; else elseBluredFace" class="display-image border-round" />
+                    <ng-template #elseBluredFace>
+                      <img [src]="girlPair[0].images.active[0]" class="display-image border-round" />
+                    </ng-template>
+                  </div>
+                  <div class="data-container">
+                    <div class="flex flex-wrap justify-content-between align-items-end mb-1">
+                      <span class="text-900 font-medium text-sm md:text-base xl:text-lg white-space-nowrap">
+                        {{ formatName(girlPair[0].name) }}{{ " " }}{{ getAgeFromBday(girlPair[0].bday) }}
+                      </span>
+                      <span class="text-primary text-base xl:text-lg font-medium white-space-nowrap">
+                        {{ formatPrice(girlPair[0].sessionPrices.oneHourPrice) }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mid-height my-regular-card" *ngIf="girlPair.length > 1" (click)="goToGirlPage(girlPair[1].id)">
+              <div class="h-full">
+                <div class="shadow-2 p-2 surface-card border-round h-full">
+                  <div class="relative mb-1 regular-image-container">
+                    <img [src]="girlPair[1].images.bluredFace[0]" *ngIf="girlPair[1].bluredFace; else elseBluredFace" class="display-image border-round" />
+                    <ng-template #elseBluredFace>
+                      <img [src]="girlPair[1].images.active[0]" class="display-image border-round" />
+                    </ng-template>
+                  </div>
+                  <div class="data-container">
+                    <div class="flex flex-wrap justify-content-between mb-1 align-items-end">
+                      <span class="text-900 font-medium text-base xl:text-lg white-space-nowrap"
+                        >{{ formatName(girlPair[1].name) }}{{ " " }}{{ getAgeFromBday(girlPair[1].bday) }}</span
+                      >
+                      <span class="text-primary text-base xl:text-lg font-medium white-space-nowrap">{{
+                        formatPrice(girlPair[1].sessionPrices.oneHourPrice)
+                      }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="economicGirls.length">
+      <ng-container *ngFor="let girlGroup of economicGirls">
+        <div class="col-12 md:col-12 lg:col-6 xl:col-4">
+          <div class="grid">
+            <ng-container *ngFor="let girl of girlGroup">
+              <div class="my-economic-card col-4 minimal-padding" (click)="goToGirlPage(girl.id)">
+                <div class="p-1 h-full">
+                  <div class="shadow-2 py-1 px-2 surface-card border-round h-full">
+                    <div class="relative pb-1 economic-image-container">
+                      <img [src]="girl.images.bluredFace[0]" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
+                      <ng-template #elseBluredFace>
+                        <img [src]="girl.images.active[0]" class="display-image border-round" />
+                      </ng-template>
+                    </div>
+                    <div class="data-container">
+                      <div class="flex flex-wrap justify-content-between align-items-center">
+                        <span class="text-900 font-medium text-xs md:text-base xl:text-base white-space-nowrap"
+                          >{{ formatName(girl.name) }}{{ " " }}{{ getAgeFromBday(girl.bday) }}</span
+                        >
+                        <span class="text-primary text-sm xl:text- font-medium white-space-nowrap">{{ formatPrice(girl.sessionPrices.oneHourPrice) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

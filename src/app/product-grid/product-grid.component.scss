@@ -1,0 +1,131 @@
+/* Add hover effect and cursor pointer */
+.my-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    aspect-ratio: 9 / 13;
+  }
+  
+  .minimal-padding {
+    padding: 0.1rem;
+  }
+  
+  .minimal-reg-padding {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+  
+  .my-regular-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+    aspect-ratio: 16 / 13;
+    overflow-y: hidden;
+  }
+  
+  .my-economic-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+    aspect-ratio: 9 / 13;
+    overflow-y: hidden;
+  }
+  
+  .card-item {
+    height: 100% !important;
+  }
+  
+  .mid-height {
+    height: 50% !important;
+    overflow-y: hidden;
+  }
+  
+  .my-card:hover {
+    transform: translateY(-5px); /* Adjust the amount of pop-up effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lighter shadow color (adjust the alpha value) */
+  }
+  
+  /* Reset the transform and shadow on active state if needed */
+  .my-card:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  
+  .my-regular-card:hover {
+    transform: translateY(-5px); /* Adjust the amount of pop-up effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lighter shadow color (adjust the alpha value) */
+  }
+  
+  /* Reset the transform and shadow on active state if needed */
+  .my-regular-card:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  
+  .my-economic-card:hover {
+    transform: translateY(-5px); /* Adjust the amount of pop-up effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lighter shadow color (adjust the alpha value) */
+  }
+  
+  /* Reset the transform and shadow on active state if needed */
+  .my-economic-card:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  
+  .data-container {
+    min-height: min-content;
+    height: 25%;
+    overflow: hidden; /* Prevents the image from overflowing its container */
+  }
+  
+  .economic-data-container {
+    min-height: min-content;
+    height: min-content;
+    overflow: hidden; /* Prevents the image from overflowing its container */
+  }
+  
+  .image-container {
+    width: 100%;
+    height: 75%;
+    position: relative;
+    overflow: hidden; /* Prevents the image from overflowing its container */
+  }
+  
+  .regular-image-container {
+    width: 100%;
+    height: 78%;
+    position: relative;
+    overflow: hidden; /* Prevents the image from overflowing its container */
+  }
+  
+  .regular-image-container img {
+    width: 100%;
+    height: 100%; /* Ensure the image fills the entire height of the container */
+    object-fit: cover; /* Ensures the image fills the container while maintaining its aspect ratio */
+  }
+  
+  .economic-image-container {
+    width: 100%;
+    height: 70%;
+    position: relative;
+    overflow: hidden; /* Prevents the image from overflowing its container */
+  }
+  
+  .economic-image-container img {
+    width: 100%;
+    height: 100%; /* Ensure the image fills the entire height of the container */
+    object-fit: cover; /* Ensures the image fills the container while maintaining its aspect ratio */
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: 100%; /* Ensure the image fills the entire height of the container */
+    object-fit: cover; /* Ensures the image fills the container while maintaining its aspect ratio */
+  }
+  
+  .display-image {
+    height: auto;
+    width: 100%;
+    display: block;
+  }
+  

@@ -1,0 +1,48 @@
+<div class="surface-section px-4 pt-4 pb-1 md:px-6 lg:px-8">
+    <div class="flex justify-content-between flex-wrap">
+      <div class="flex align-items-center mb-3 md:mb-0">
+        <div class="text-900 font-bold mb-2 text-4xl">Busca a tu gusto!</div>
+      </div>
+    </div>
+    <div class="grid grid-nogutter align-items-center">
+      <p-multiSelect
+        [showToggleAll]="false"
+        [options]="allServices"
+        [(ngModel)]="selectedServices"
+        placeholder="Servicios"
+        (onChange)="updateSelectedServices()"
+        optionLabel="name"
+        styleClass="w-full"
+        [maxSelectedLabels]="3"
+        selectedItemsLabel="{0} servicios seleccionados"
+        class="flex-auto lg:flex-1 mb-3 lg:mt-0 w-full mr-0 lg:mr-4 text-900"
+      ></p-multiSelect>
+      <p-multiSelect
+        [showToggleAll]="false"
+        [options]="allSpecificLocations"
+        [(ngModel)]="selectedSpecificLocaitons"
+        placeholder="Ubicaciones"
+        (onChange)="updateSelectedSpecificLocations()"
+        optionLabel="name"
+        styleClass="w-full"
+        [maxSelectedLabels]="3"
+        selectedItemsLabel="{0} Ubicaciones seleccionadas"
+        class="flex-auto lg:flex-1 mb-3 lg:mt-0 w-full mr-0 lg:mr-4 text-900"
+      ></p-multiSelect>
+      <p-multiSelect
+        [showToggleAll]="false"
+        [options]="otherFilters"
+        [(ngModel)]="selectedOtherFilters"
+        placeholder="Otros Filtros"
+        (onChange)="updateSelectedOtherFilters()"
+        optionLabel="name"
+        styleClass="w-full"
+        [maxSelectedLabels]="3"
+        selectedItemsLabel="{0} filtros seleccionados"
+        class="flex-auto lg:flex-1 mb-3 lg:mt-0 lg:col w-full mr-0 lg:mr-4 text-900"
+      ></p-multiSelect>
+      <p-button label="Borrar Filtros" icon="pi pi-filter-slash" iconPos="right" class="mb-3 pr-3" (onClick)="clearFilters()"></p-button>
+      <p-button label="Aplicar Filtros" icon="pi pi-filter-fill" iconPos="right" class="mb-3" (onClick)="applyFilter()"></p-button>
+    </div>
+  </div>
+  

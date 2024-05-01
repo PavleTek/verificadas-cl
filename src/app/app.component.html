@@ -1,0 +1,8 @@
+<app-header *ngIf="entryConfirmation"></app-header>
+<div *ngIf="entryConfirmation; else entryComponent">
+  <router-outlet></router-outlet>
+</div>
+<ng-template #entryComponent>
+  <app-entry (entryConfirmedEvent)="confirmEntry()"></app-entry>
+</ng-template>
+<app-footer *ngIf="entryConfirmation"></app-footer>

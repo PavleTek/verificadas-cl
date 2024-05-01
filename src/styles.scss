@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/arya-purple/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import "../node_modules/primeflex/primeflex.css";
+
+body {
+  margin: 0;
+}
+
+.body-contanier {
+  max-width: 2000px;
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 0 30px; /* Add some padding for better readability */
+}
+
+@media screen and (max-width: 435px) {
+  .body-contanier {
+    padding: 0 0px;
+  }
+}

@@ -1,0 +1,36 @@
+<div class="grid grid-nogutter surface-section px-4 py-4 md:px-6 lg:px-8 border-top-1 surface-border">
+  <div class="col-12 lg:col-6 lg:border-right-1 surface-border">
+    <img src="../../assets/verificadasClHorizontal.png" class="w-9rem mx-auto lg:mx-0" alt="Peak logo" />
+    <span class="text-900 block mt-4 mr-3 description">{{ description }} </span>
+    <span class="text-500 block mt-4">© {{ currentYear }}, Verificadas.cl</span>
+  </div>
+  <div class="col-12 md:col-6 lg:col-3 mt-4 lg:mt-0 lg:pl-4 flex flex-column">
+    <span class="text-900 text-xl font-medium block">Empresa</span>
+    <ul class="list-none p-0">
+      <li><a tabindex="0" (click)="goToAbout()" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline">Nosotros</a></li>
+      <li><a tabindex="0" (click)="goToBlog()" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline">Blog</a></li>
+      <li>
+        <a tabindex="0" (click)="goToContact()" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline">Contacto</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-12 lg:col-3 md:col-6 flex mt-4 lg:mt-0 lg:pl-4 flex-column">
+    <span class="text-900 text-xl font-medium block">Clientas</span>
+    <ul class="list-none p-0">
+      <li>
+        <a
+          tabindex="0"
+          href="https://clientas.verificadas.cl/login"
+          class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline"
+          >Ingreso</a
+        >
+      </li>
+      <li>
+        <a tabindex="0" (click)="goToPricing()" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline">Precios</a>
+      </li>
+      <li>
+        <a tabindex="0" (click)="goToAnounce()" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline">Anunciate</a>
+      </li>
+    </ul>
+  </div>
+</div>

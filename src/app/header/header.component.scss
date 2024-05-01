@@ -1,0 +1,13 @@
+::ng-deep .p-dropdown .p-dropdown-label {
+    background: transparent;
+    border: 0 none;
+    min-width: 8em;
+  }
+  
+  @media screen and (max-width: 380px) {
+    .logo-img {
+      width: 90%;
+      height: auto;
+    }
+  }
+  
