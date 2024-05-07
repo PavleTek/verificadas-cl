@@ -7,7 +7,6 @@
 //   basePendingimageUrl: 'http://localhost:3100/pending-images',
 // };
 
-
 export const environment = {
   production: true,
   noDisplayValue: 'No Especificar',

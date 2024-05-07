@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /age-verification/
+Sitemap: https://verificadas.cl/sitemap.xml

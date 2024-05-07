@@ -14,7 +14,7 @@ export class AboutComponent {
     this.titleService.setTitle('Verificadas.cl');
     this.metaService.updateTag({
       name: 'description',
-      content: 'Acerca de verificadas CL, quienes somos, cual es nuestro objetivo en el mercado de escrots Premium en zonas premium',
+      content: 'Acerca de verificadas CL, quienes somos, cual es nuestro objetivo en el mercado de escorts premium en zonas premium',
     });
   }
 }
