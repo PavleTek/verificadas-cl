@@ -39,7 +39,7 @@ export class AnounceComponent {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.titleService.setTitle('Anunciate en verificadas.cl');
+    this.titleService.setTitle('Anunciate en Verificadas.cl');
     this.metaService.updateTag({
       name: 'description',
       content:
