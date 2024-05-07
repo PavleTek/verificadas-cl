@@ -3,6 +3,54 @@
   <div class="text-700 text-xl mb-6 text-center line-height-3">Encuentra el plan perfecto para ti!</div>
 
   <div class="grid">
+    <ng-container>
+      <div class="col-12 lg:col-4">
+        <div class="p-3 h-full">
+          <div class="shadow-2 p-3 flex flex-column surface-card" style="border-radius: 6px">
+            <div class="text-900 font-medium text-xl mb-2">Plan Premium</div>
+            <div class="text-600">Verificadas CL sera gratuito hasta nuevo aviso!</div>
+            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+            <div class="flex align-items-center">
+              <ng-container>
+                <span class="font-bold text-2xl text-900 line-through"> $ XXX.XXX </span>
+                <i class="pi pi-arrow-right px-2"></i>
+                <span class="font-bold text-2xl text-900 text-primary-500">
+                  $ Gratis!
+                </span>
+              </ng-container>
+            </div>
+            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+            <ul class="list-none p-0 m-0 flex-grow-1">
+              <li class="flex align-items-center mb-3">
+                <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                <span class="text-900">Accesso ilimitado a nuestra plataforma</span>
+              </li>
+              <li class="flex align-items-center mb-3">
+                <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                <span class="text-900">3 Congelaciónes</span>
+              </li>
+              <li class="flex align-items-center mb-3">
+                <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                <span class="text-900">16 Fotos</span>
+              </li>
+              <li class="flex align-items-center mb-3">
+                <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                <span class="text-900">3 Videos</span>
+              </li>
+              <li class="flex align-items-center mb-3">
+                <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                <span class="text-900">atención preferencial</span>
+              </li>
+            </ul>
+            <hr class="mb-3 mx-0 border-top-1 border-none surface-border" />
+            <button pButton pRipple label="Anunciate!" class="p-3 w-full" (click)="goToAnounce('Premium')"></button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- <div class="grid">
     <ng-container *ngIf="economicPricingPlan">
       <div class="col-12 lg:col-4">
         <div class="p-3 h-full">
@@ -156,5 +204,5 @@
         </div>
       </div>
     </ng-container>
-  </div>
+  </div> -->
 </div>

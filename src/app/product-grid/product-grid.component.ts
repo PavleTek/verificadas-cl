@@ -36,7 +36,7 @@ export class ProductGridComponent {
   }
 
   goToGirlPage(girlId: number) {
-    this.router.navigate(['/lady', girlId]);
+    this.router.navigate(['/escort-verificada', girlId]);
   }
 
   getMiniDescriptionText(girl: Girl): string {

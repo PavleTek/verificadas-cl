@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -9,9 +10,10 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './entry.component.scss',
 })
 export class EntryComponent {
-  @Output() entryConfirmedEvent = new EventEmitter<boolean>();
   userPassword: string = '';
-  confirmEntry() {
-    this.entryConfirmedEvent.emit();
+  constructor(private router: Router) {}
+  confirmEntry(): void {
+    localStorage.setItem('ageVerified', 'true');
+    this.router.navigate(['/escorts']);
   }
 }

@@ -8,6 +8,7 @@ import { City, Girl, Service, SpecificLocation } from '../types';
 import { ProductGridComponent } from '../product-grid/product-grid.component';
 import { FilterComponent } from '../filter/filter.component';
 import { DividerModule } from 'primeng/divider';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-main-user-view',
@@ -35,7 +36,13 @@ export class MainUserViewComponent {
   activeGirl: Girl | undefined = undefined;
   filteredGirls: Girl[] = [];
 
-  constructor(private mainService: MainService, private route: ActivatedRoute, private internalService: InternalService) {
+  constructor(
+    private mainService: MainService,
+    private route: ActivatedRoute,
+    private internalService: InternalService,
+    private titleService: Title,
+    private metaService: Meta
+  ) {
     this.internalService.allGirlsData.subscribe((data) => {
       if (data) {
         this.allGirls = data;
@@ -89,6 +96,8 @@ export class MainUserViewComponent {
   }
 
   async ngOnInit() {
+    this.titleService.setTitle('Escorts verificadas Santiago');
+    this.metaService.updateTag({ name: 'description', content: 'Explora escorts verificadas en Santiago. Perfiles verificados, las mejores acompañantes en Santiago Oriente.' });
     try {
       if (this.allGirls.length <= 1) {
         const params = await firstValueFrom(this.route.params);

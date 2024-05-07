@@ -9,18 +9,25 @@ import { GirlPageComponent } from './girl-page/girl-page.component';
 import { BlogOneComponent } from './blog-one/blog-one.component';
 import { BlogSecondComponent } from './blog-second/blog-second.component';
 import { BlogThirdComponent } from './blog-third/blog-third.component';
+import { EntryComponent } from './entry/entry.component';
+import { AgeGuardService } from './age-guard.service';
 
 export const routes: Routes = [
   {
-    path: 'home',
+    path: 'age-verification',
+    component: EntryComponent,
+  },
+  {
+    path: 'escorts/:cityName',
     component: MainUserViewComponent,
   },
   {
-    path: 'home/:cityName',
+    path: 'escorts',
     component: MainUserViewComponent,
+    canActivate: [AgeGuardService],
   },
   {
-    path: 'lady/:id',
+    path: 'escort-verificada/:id',
     component: GirlPageComponent,
   },
   {
@@ -59,5 +66,5 @@ export const routes: Routes = [
     path: 'anunciate/:paymentTier',
     component: AnounceComponent,
   },
-  { path: '**', redirectTo: '/home' },
+  { path: '**', redirectTo: '/escorts' },
 ];

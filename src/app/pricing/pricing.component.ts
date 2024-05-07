@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
 import { PricingPlan } from '../types';
 import { MainService } from '../main.service';
 import { formatPrice } from '../helper-functions';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pricing',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonModule],
   templateUrl: './pricing.component.html',
   styleUrl: './pricing.component.scss',
 })
@@ -17,7 +19,7 @@ export class PricingComponent {
   regularPricingPlan: PricingPlan | any;
   premiumPricingPlan: PricingPlan | any;
 
-  constructor(private mainService: MainService, private router: Router) {}
+  constructor(private mainService: MainService, private router: Router, private titleService: Title, private metaService: Meta) {}
 
   goToAnounce(paymentTier: string) {
     this.router.navigate([`/anunciate/${paymentTier}`]);
@@ -50,6 +52,12 @@ export class PricingComponent {
   }
 
   async ngOnInit() {
+    this.titleService.setTitle('Precios Verificadas');
+    this.metaService.updateTag({
+      name: 'description',
+      content:
+        'Descubre nuestros planes de precios competitivos para la publicación de anuncios de escorts en nuestro sitio. Calidad y visibilidad garantizadas para tu perfil.',
+    });
     await this.initiatePricings();
   }
 }

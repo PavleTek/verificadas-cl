@@ -8,6 +8,7 @@ import { InternalService } from '../internal.service';
 import { MainService } from '../main.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { WeekScheduleComponent } from '../week-schedule/week-schedule.component';
+import { Title, Meta } from '@angular/platform-browser';
 
 import { GalleriaModule } from 'primeng/galleria';
 import { DialogModule } from 'primeng/dialog';
@@ -62,7 +63,9 @@ export class GirlPageComponent {
     private route: ActivatedRoute,
     private internalService: InternalService,
     private mainService: MainService,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private titleService: Title,
+    private metaService: Meta
   ) {
     this.internalService.allGirlsData.subscribe((data) => {
       if (data) {
@@ -240,5 +243,10 @@ export class GirlPageComponent {
 
   async ngOnInit(): Promise<void> {
     await this.girlInit();
+    this.titleService.setTitle(`Escort verificada ${this.girl.name}`);
+    this.metaService.updateTag({
+      name: 'description',
+      content: `${this.girl.description}`,
+    });
   }
 }
