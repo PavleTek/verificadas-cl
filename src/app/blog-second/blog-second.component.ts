@@ -19,7 +19,7 @@ export class BlogSecondComponent {
     });
     this.metaService.updateTag({
       name: 'description',
-      content: 'Explora cómo las escorts verificadas ofrecen mayor seguridad y confianza, gracias a un riguroso proceso de verificación.',
+      content: 'Explora cómo las escorts verificadas ofrecen mayor seguridad y confianza, gracias a un riguroso proceso de Verificación.',
     });
   }
 }
