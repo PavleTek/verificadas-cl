@@ -12,10 +12,10 @@ import { Title, Meta } from '@angular/platform-browser';
 export class BlogThirdComponent {
   constructor(private titleService: Title, private metaService: Meta) {}
   ngOnInit() {
-    this.titleService.setTitle('Escorts Santiago Oriente');
+    this.titleService.setTitle('Seguridad en escorts');
     this.metaService.updateTag({
       name: 'description',
-      content: 'Descubre por qué Santiago Oriente es la zona más premium de Santiago, destacando por su exclusividad y servicios de alta calidad.',
+      content: 'Explora cómo las escorts verificadas ofrecen mayor seguridad y confianza, gracias a un riguroso proceso de verificación.',
     });
   }
 }
