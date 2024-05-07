@@ -27,6 +27,11 @@ export const routes: Routes = [
     canActivate: [AgeGuardService],
   },
   {
+    path: '',
+    component: MainUserViewComponent,
+    canActivate: [AgeGuardService],
+  },
+  {
     path: 'escort-verificada/:id',
     component: GirlPageComponent,
   },
