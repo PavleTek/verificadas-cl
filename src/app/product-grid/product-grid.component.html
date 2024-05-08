@@ -2,7 +2,7 @@
   <div class="grid -mt-3 -ml-3 -mr-3 mb-2">
     <ng-container *ngIf="premiumAndSpecialGirls.length">
       <ng-container *ngFor="let girl of premiumAndSpecialGirls">
-        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl)">
           <div class="p-1 h-full">
             <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
               <div class="relative mb-3 image-container">
@@ -32,7 +32,7 @@
     <!-- TEMPORARY MUST DELETE BEFORE LAUNCH -->
     <ng-container *ngIf="premiumAndSpecialGirls.length">
       <ng-container *ngFor="let girl of premiumAndSpecialGirls">
-        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl)">
           <div class="p-1 h-full">
             <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
               <div class="relative mb-3 image-container">
@@ -61,7 +61,7 @@
     </ng-container>
     <ng-container *ngIf="premiumAndSpecialGirls.length">
       <ng-container *ngFor="let girl of premiumAndSpecialGirls">
-        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl)">
           <div class="p-1 h-full">
             <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
               <div class="relative mb-3 image-container">
@@ -90,7 +90,7 @@
     </ng-container>
     <ng-container *ngIf="premiumAndSpecialGirls.length">
       <ng-container *ngFor="let girl of premiumAndSpecialGirls">
-        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl)">
           <div class="p-1 h-full">
             <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
               <div class="relative mb-3 image-container">
@@ -119,7 +119,7 @@
     </ng-container>
     <ng-container *ngIf="premiumAndSpecialGirls.length">
       <ng-container *ngFor="let girl of premiumAndSpecialGirls">
-        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl)">
           <div class="p-1 h-full">
             <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
               <div class="relative mb-3 image-container">
@@ -148,7 +148,7 @@
     </ng-container>
     <ng-container *ngIf="premiumAndSpecialGirls.length">
       <ng-container *ngFor="let girl of premiumAndSpecialGirls">
-        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl)">
           <div class="p-1 h-full">
             <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
               <div class="relative mb-3 image-container">
@@ -177,7 +177,7 @@
     </ng-container>
     <ng-container *ngIf="premiumAndSpecialGirls.length">
       <ng-container *ngFor="let girl of premiumAndSpecialGirls">
-        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl.id)">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl)">
           <div class="p-1 h-full">
             <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
               <div class="relative mb-3 image-container">
@@ -262,7 +262,7 @@
         <div class="col-12 md:col-12 lg:col-6 xl:col-4">
           <div class="grid">
             <ng-container *ngFor="let girl of girlGroup">
-              <div class="my-economic-card col-4 minimal-padding" (click)="goToGirlPage(girl.id)">
+              <div class="my-economic-card col-4 minimal-padding" (click)="goToGirlPage(girl)">
                 <div class="p-1 h-full">
                   <div class="shadow-2 py-1 px-2 surface-card border-round h-full">
                     <div class="relative pb-1 economic-image-container">

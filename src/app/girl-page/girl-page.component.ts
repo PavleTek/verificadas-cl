@@ -219,8 +219,15 @@ export class GirlPageComponent {
       window.scrollTo(0, 0);
       const params = await firstValueFrom(this.route.params);
       if (params) {
-        let girlId = params['id'];
-        girlId = parseInt(girlId);
+        let paramText = params['id'];
+        let girlId: any = undefined;
+        const parts = paramText.split('--');
+        if (parts.length >= 2) {
+          girlId = parseInt(parts[1]);
+          const girlname = parts[0];
+          this.titleService.setTitle(`Escort Verificada ${girlname}`);
+          console.log(girlId, 'girl id');
+        }
         if (girlId) {
           if (this.allGirls.length <= 1) {
             await this.mainService.initiateEverythingGirlPage(girlId);
@@ -242,11 +249,6 @@ export class GirlPageComponent {
   }
 
   async ngOnInit(): Promise<void> {
-    this.titleService.setTitle(`Escort verificada ${this.girl.name}`);
-    this.metaService.updateTag({
-      name: 'description',
-      content: `${this.girl.description}`,
-    });
     await this.girlInit();
   }
 }
