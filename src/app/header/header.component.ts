@@ -45,13 +45,17 @@ export class HeaderComponent {
     if (this.activeCity) {
       this.internalService.updateActiveCity(this.activeCity);
       this.mainService.getGirlsByCityId(this.activeCity.id);
-      this.router.navigate(['/escorts', this.activeCity.name]);
+      if (this.activeCity.name !== 'Santiago') {
+        this.router.navigate(['/escorts', this.activeCity.name]);
+      } else {
+        this.router.navigate(['/escorts']);
+      }
     }
   }
 
   goToHomeAndResetCategory() {
     this.internalService.updateSelectedCategory('');
-    if (this.activeCity) {
+    if (this.activeCity && this.activeCity.name !== 'Santiago') {
       this.router.navigate(['/escorts', this.activeCity.name]);
     } else {
       this.router.navigate(['/escorts']);
@@ -62,14 +66,14 @@ export class HeaderComponent {
     if (this.activeCategory === category) {
       this.activeCategory = '';
       this.internalService.updateSelectedCategory('');
-      if (this.activeCity !== undefined) {
+      if (this.activeCity !== undefined && this.activeCity.name !== 'Santiago') {
         this.router.navigate(['/escorts', this.activeCity.name]);
       } else {
         this.router.navigate(['/escorts']);
       }
     } else {
       this.internalService.updateSelectedCategory(category);
-      if (this.activeCity !== undefined) {
+      if (this.activeCity !== undefined && this.activeCity.name !== 'Santiago') {
         this.router.navigate(['/escorts', this.activeCity.name]);
       } else {
         this.router.navigate(['/escorts']);
@@ -78,7 +82,7 @@ export class HeaderComponent {
   }
 
   goToHomePage() {
-    if (this.activeCity) {
+    if (this.activeCity && this.activeCity.name !== 'Santiago') {
       this.router.navigate(['/escorts', this.activeCity.name]);
     } else {
       this.router.navigate(['./escorts']);

@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /age-verification/
+Disallow: /esorts/Santiago
 Sitemap: https://verificadas.cl/sitemap.xml
