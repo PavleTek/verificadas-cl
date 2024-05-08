@@ -242,11 +242,11 @@ export class GirlPageComponent {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.girlInit();
     this.titleService.setTitle(`Escort verificada ${this.girl.name}`);
     this.metaService.updateTag({
       name: 'description',
       content: `${this.girl.description}`,
     });
+    await this.girlInit();
   }
 }
