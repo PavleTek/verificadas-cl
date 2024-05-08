@@ -14,10 +14,6 @@ import { AgeGuardService } from './age-guard.service';
 
 export const routes: Routes = [
   {
-    path: '',
-    component: EntryComponent,
-  },
-  {
     path: 'escorts/:cityName',
     component: MainUserViewComponent,
   },
@@ -64,6 +60,10 @@ export const routes: Routes = [
   {
     path: 'anunciate/:paymentTier',
     component: AnounceComponent,
+  },
+  {
+    path: '',
+    component: EntryComponent,
   },
   { path: '**', redirectTo: '/escorts' },
 ];

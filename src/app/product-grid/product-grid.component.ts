@@ -35,7 +35,7 @@ export class ProductGridComponent {
     });
   }
 
-  goToGirlPage(girl: Girl) {
+goToGirlPage(girl: Girl) {
     const paramText: string = `${girl.name}--${girl.id}`;
     this.router.navigate(['/escort-verificada', paramText]);
   }
