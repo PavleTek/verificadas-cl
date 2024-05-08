@@ -14,7 +14,7 @@ import { AgeGuardService } from './age-guard.service';
 
 export const routes: Routes = [
   {
-    path: 'age-verification',
+    path: '',
     component: EntryComponent,
   },
   {
@@ -24,12 +24,6 @@ export const routes: Routes = [
   {
     path: 'escorts',
     component: MainUserViewComponent,
-    canActivate: [AgeGuardService],
-  },
-  {
-    path: '',
-    component: MainUserViewComponent,
-    canActivate: [AgeGuardService],
   },
   {
     path: 'escort-verificada/:id',
