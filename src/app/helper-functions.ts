@@ -52,8 +52,12 @@ export function getAgeFromBday(bday: Date) {
 
 export function getImageUrlFromImageName(imageName: string): string {
   const baseUrl: string = environment.baseImageUrl;
-  const imageUrl: string = baseUrl + '/' + imageName;
-  return imageUrl;
+  if (imageName.startsWith(baseUrl)) {
+    return imageName;
+  } else {
+    const imageUrl: string = baseUrl + '/' + imageName;
+    return imageUrl;
+  }
 }
 
 export function formatGirlImagesToUrls(images: MultimediaObject): MultimediaObject {
