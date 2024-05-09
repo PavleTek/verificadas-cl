@@ -1,7 +1,7 @@
 import { Component, HostListener, SimpleChanges, ElementRef } from '@angular/core';
 import { Girl, EditLevel, Service } from '../types';
 import { environment } from '../../environments/environment';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { formatPrice } from '../helper-functions';
 import { InternalService } from '../internal.service';
@@ -63,6 +63,7 @@ export class GirlPageComponent {
     private route: ActivatedRoute,
     private internalService: InternalService,
     private mainService: MainService,
+    private router: Router,
     private breakpointObserver: BreakpointObserver,
     private titleService: Title,
     private metaService: Meta
@@ -219,15 +220,7 @@ export class GirlPageComponent {
       window.scrollTo(0, 0);
       const params = await firstValueFrom(this.route.params);
       if (params) {
-        let paramText = params['id'];
-        let girlId: any = undefined;
-        const parts = paramText.split('--');
-        if (parts.length >= 2) {
-          girlId = parseInt(parts[1]);
-          const girlname = parts[0];
-          this.titleService.setTitle(`Escort Verificada ${girlname}`);
-          console.log(girlId, 'girl id');
-        }
+        let girlId = parseInt(params['id']);
         if (girlId) {
           if (this.allGirls.length <= 1) {
             await this.mainService.initiateEverythingGirlPage(girlId);
@@ -250,5 +243,14 @@ export class GirlPageComponent {
 
   async ngOnInit(): Promise<void> {
     await this.girlInit();
+    if (this.girl !== undefined) {
+      this.titleService.setTitle(`Escort Verificada ${this.girl.name}`);
+      this.metaService.updateTag({
+        name: 'description',
+        content: `${this.girl.description}`,
+      });
+    } else {
+      this.router.navigate(['/escorts']);
+    }
   }
 }

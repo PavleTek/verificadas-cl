@@ -10,7 +10,7 @@ import { BlogOneComponent } from './blog-one/blog-one.component';
 import { BlogSecondComponent } from './blog-second/blog-second.component';
 import { BlogThirdComponent } from './blog-third/blog-third.component';
 import { EntryComponent } from './entry/entry.component';
-import { AgeGuardService } from './age-guard.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes = [
   {
@@ -60,6 +60,10 @@ export const routes: Routes = [
   {
     path: 'anunciate/:paymentTier',
     component: AnounceComponent,
+  },
+  {
+    path: 'notFound',
+    component: NotFoundComponent,
   },
   {
     path: '',

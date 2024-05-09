@@ -3,7 +3,7 @@ import { Girl } from '../types';
 import { InternalService } from '../internal.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { formatName } from '../helper-functions';
+import { formatGirlImagesToUrls, formatName } from '../helper-functions';
 
 @Component({
   selector: 'app-product-grid',
@@ -35,9 +35,10 @@ export class ProductGridComponent {
     });
   }
 
-goToGirlPage(girl: Girl) {
-    const paramText: string = `${girl.name}--${girl.id}`;
-    this.router.navigate(['/escort-verificada', paramText]);
+  goToGirlPage(girl: Girl) {
+    const girlId = girl.id;
+    console.log('hello');
+    this.router.navigate(['/escort-verificada', girlId]);
   }
 
   getMiniDescriptionText(girl: Girl): string {
