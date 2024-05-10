@@ -79,6 +79,7 @@
   
   .grid-img {
     object-fit: cover;
+    object-position: center top; /* Adjust the positioning here */
     display: block;
     aspect-ratio: 1 / 1;
   }

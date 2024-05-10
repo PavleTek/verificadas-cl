@@ -101,6 +101,7 @@
   .regular-image-container img {
     width: 100%;
     height: 100%; /* Ensure the image fills the entire height of the container */
+    object-position: center top; /* Adjust the positioning here */
     object-fit: cover; /* Ensures the image fills the container while maintaining its aspect ratio */
   }
   
@@ -114,12 +115,14 @@
   .economic-image-container img {
     width: 100%;
     height: 100%; /* Ensure the image fills the entire height of the container */
+    object-position: center top; /* Adjust the positioning here */
     object-fit: cover; /* Ensures the image fills the container while maintaining its aspect ratio */
   }
   
   .image-container img {
     width: 100%;
     height: 100%; /* Ensure the image fills the entire height of the container */
+    object-position: center top; /* Adjust the positioning here */
     object-fit: cover; /* Ensures the image fills the container while maintaining its aspect ratio */
   }
   
