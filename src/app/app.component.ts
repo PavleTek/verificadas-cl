@@ -18,12 +18,8 @@ export class AppComponent {
   isAgeVerificationPage: boolean = false;
 
   constructor(private router: Router) {
-    this.router.events
-      .pipe(
-        filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd)
-      )
-      .subscribe((event: NavigationEnd) => {
-        this.isAgeVerificationPage = event.urlAfterRedirects.includes('age-verification');
-      });
+    this.router.events.pipe(filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
+      this.isAgeVerificationPage = event.urlAfterRedirects === '/' || event.urlAfterRedirects === '/ ';
+    });
   }
 }
