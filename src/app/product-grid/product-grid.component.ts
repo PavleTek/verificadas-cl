@@ -37,8 +37,11 @@ export class ProductGridComponent {
 
   goToGirlPage(girl: Girl) {
     const girlId = girl.id;
-    console.log('hello');
     this.router.navigate(['/escort-verificada', girlId]);
+  }
+
+  girlLink(girlId: number): string {
+    return `https://verificadas.cl/escort-verificada/${girlId}`;
   }
 
   getMiniDescriptionText(girl: Girl): string {

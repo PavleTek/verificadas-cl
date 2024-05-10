@@ -1,4 +1,12 @@
 User-agent: *
+Disallow: http://cdn.verificadas.cl/  
+Disallow: https://cdn.verificadas.cl/ 
+Disallow: http://cdn.verificadas.cl/* 
+Disallow: https://cdn.verificadas.cl/*
+Disallow: http://api.verificadas.cl/  
+Disallow: https://api.verificadas.cl/ 
+Disallow: http://api.verificadas.cl/* 
+Disallow: https://api.verificadas.cl/*
 Disallow: /age-verification/
 Disallow: /esorts/Santiago
 Sitemap: https://verificadas.cl/sitemap.xml

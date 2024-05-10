@@ -2,13 +2,14 @@
   <div class="grid -mt-3 -ml-3 -mr-3 mb-2">
     <ng-container *ngIf="premiumAndSpecialGirls.length">
       <ng-container *ngFor="let girl of premiumAndSpecialGirls">
-        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding" (click)="goToGirlPage(girl)">
+        <div class="col-6 sm:col-6 md:col-6 lg:col-4 xl:col-3 my-card minimal-padding link-container">
+          <a [href]="girlLink(girl.id)" class="invisible-link"></a>
           <div class="p-1 h-full">
             <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
               <div class="relative mb-3 image-container">
-                <img [src]="girl.images.bluredFace[0]" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
+                <img [src]="girl.images.bluredFace[0]" [alt]="'Main display image for escort' + girl.name" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
                 <ng-template #elseBluredFace>
-                  <img [src]="girl.images.active[0]" class="display-image border-round" />
+                  <img [src]="girl.images.active[0]" [alt]="'Main display image for escort' + girl.name" class="display-image border-round" />
                 </ng-template>
               </div>
               <div class="data-container">
@@ -209,13 +210,14 @@
       <ng-container *ngFor="let girlPair of regularGirls">
         <div class="col-6 md:col-6 lg:col-4 xl:col-3 minimal-reg-padding">
           <div class="flex flex-column">
-            <div class="mid-height my-regular-card mb-3" *ngIf="girlPair.length > 0" (click)="goToGirlPage(girlPair[0].id)">
+            <div class="mid-height my-regular-card mb-3 link-container" *ngIf="girlPair.length > 0" (click)="goToGirlPage(girlPair[0].id)">
+              <a [href]="girlLink(girlPair[0].id)" class="invisible-link"></a>
               <div class="h-full">
                 <div class="shadow-2 p-2 surface-card border-round h-full">
                   <div class="relative mb-1 regular-image-container">
-                    <img [src]="girlPair[0].images.bluredFace[0]" *ngIf="girlPair[0].bluredFace; else elseBluredFace" class="display-image border-round" />
+                    <img [src]="girlPair[0].images.bluredFace[0]" [alt]="'Main display image for escort' + girlPair[0].name" *ngIf="girlPair[0].bluredFace; else elseBluredFace" class="display-image border-round" />
                     <ng-template #elseBluredFace>
-                      <img [src]="girlPair[0].images.active[0]" class="display-image border-round" />
+                      <img [src]="girlPair[0].images.active[0]" [alt]="'Main display image for escort' + girlPair[0].name" class="display-image border-round" />
                     </ng-template>
                   </div>
                   <div class="data-container">
@@ -231,13 +233,14 @@
                 </div>
               </div>
             </div>
-            <div class="mid-height my-regular-card" *ngIf="girlPair.length > 1" (click)="goToGirlPage(girlPair[1].id)">
+            <div class="mid-height my-regular-card link-container" *ngIf="girlPair.length > 1" (click)="goToGirlPage(girlPair[1].id)">
+              <a [href]="girlLink(girlPair[1].id)" class="invisible-link"></a>
               <div class="h-full">
                 <div class="shadow-2 p-2 surface-card border-round h-full">
                   <div class="relative mb-1 regular-image-container">
-                    <img [src]="girlPair[1].images.bluredFace[0]" *ngIf="girlPair[1].bluredFace; else elseBluredFace" class="display-image border-round" />
+                    <img [src]="girlPair[1].images.bluredFace[0]" [alt]="'Main display image for escort' + girlPair[1].name" *ngIf="girlPair[1].bluredFace; else elseBluredFace" class="display-image border-round" />
                     <ng-template #elseBluredFace>
-                      <img [src]="girlPair[1].images.active[0]" class="display-image border-round" />
+                      <img [src]="girlPair[1].images.active[0]" [alt]="'Main display image for escort' + girlPair[1].name" class="display-image border-round" />
                     </ng-template>
                   </div>
                   <div class="data-container">
@@ -262,13 +265,14 @@
         <div class="col-12 md:col-12 lg:col-6 xl:col-4">
           <div class="grid">
             <ng-container *ngFor="let girl of girlGroup">
-              <div class="my-economic-card col-4 minimal-padding" (click)="goToGirlPage(girl)">
+              <div class="my-economic-card col-4 minimal-padding link-container" (click)="goToGirlPage(girl)">
+                <a [href]="girlLink(girl.id)" class="invisible-link"></a>
                 <div class="p-1 h-full">
                   <div class="shadow-2 py-1 px-2 surface-card border-round h-full">
                     <div class="relative pb-1 economic-image-container">
-                      <img [src]="girl.images.bluredFace[0]" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
+                      <img [src]="girl.images.bluredFace[0]" [alt]="'Main display image for escort' + girl.name" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
                       <ng-template #elseBluredFace>
-                        <img [src]="girl.images.active[0]" class="display-image border-round" />
+                        <img [src]="girl.images.active[0]" [alt]="'Main display image for escort' + girl.name" class="display-image border-round" />
                       </ng-template>
                     </div>
                     <div class="data-container">
