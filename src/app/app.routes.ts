@@ -22,6 +22,10 @@ export const routes: Routes = [
     component: MainUserViewComponent,
   },
   {
+    path: 'escorts/',
+    redirectTo: 'escorts',
+  },
+  {
     path: 'escort-verificada/:id',
     component: GirlPageComponent,
   },
@@ -30,32 +34,64 @@ export const routes: Routes = [
     component: AboutComponent,
   },
   {
+    path: 'about/',
+    redirectTo: 'about',
+  },
+  {
     path: 'contact',
     component: ContactComponent,
+  },
+  {
+    path: 'contact/',
+    redirectTo: 'contact',
   },
   {
     path: 'prices',
     component: PricingComponent,
   },
   {
+    path: 'prices/',
+    redirectTo: 'prices',
+  },
+  {
     path: 'anunciate',
     component: AnounceComponent,
+  },
+  {
+    path: 'anunciate/',
+    redirectTo: 'anunciate',
   },
   {
     path: 'blog',
     component: BlogComponent,
   },
   {
+    path: 'blog/',
+    redirectTo: 'blog',
+  },
+  {
     path: 'primer-encuentro-con-una-escort-de-lujo',
     component: BlogOneComponent,
+  },
+  {
+    path: 'primer-encuentro-con-una-escort-de-lujo/',
+    redirectTo: 'primer-encuentro-con-una-escort-de-lujo',
   },
   {
     path: 'escorts-en-santiago-oriente',
     component: BlogSecondComponent,
   },
   {
+    path: 'escorts-en-santiago-oriente/',
+    redirectTo: 'escorts-en-santiago-oriente',
+  },
+  {
     path: 'seguridad-y-verificadas-santiago',
     component: BlogThirdComponent,
+  },
+  {
+    path: 'seguridad-y-verificadas-santiago/',
+    redirectTo: 'seguridad-y-verificadas-santiago',
   },
   {
     path: 'anunciate/:paymentTier',
@@ -64,6 +100,10 @@ export const routes: Routes = [
   {
     path: 'notFound',
     component: NotFoundComponent,
+  },
+  {
+    path: 'notFound/',
+    redirectTo: 'notFound',
   },
   {
     path: '',
