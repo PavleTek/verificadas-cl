@@ -66,6 +66,7 @@ export type Girl = {
   attributes: Attributes; // added to html Done
   images: MultimediaObject; // added to html Missing Functionality
   videos: MultimediaObject; // added to html Missing Functionality
+  requestProfilePicture?: string;
   profilePicture: string; // added to html Missing Functionality
   editLevel: string; // added to html Missing Functionality
   nationality: {
@@ -216,6 +217,17 @@ export type Service = {
   description: string;
   edit?: boolean;
   new?: boolean;
+};
+
+export type Blog = {
+  id?: number;
+  title: string;
+  shortDescription: string;
+  content?: string;
+  metaTitle?: string;
+  category?: string;
+  metaDescription?: string;
+  createdAt?: Date;
 };
 
 export type City = {

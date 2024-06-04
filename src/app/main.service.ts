@@ -165,4 +165,25 @@ export class MainService {
       return error;
     }
   }
+
+  // Blogs Logic
+  async getBlogById(blogId: number | string): Promise<any> {
+    try {
+      const response = await this.http.get(`${this.baseUrl}/girl-api/blogs/${blogId}`).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  }
+
+  async getAllBlogs(): Promise<any> {
+    try {
+      const response = await this.http.get(`${this.baseUrl}/girl-api/blogs`).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  }
 }

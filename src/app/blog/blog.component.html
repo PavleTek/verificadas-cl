@@ -1,49 +1,20 @@
 <div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
-    <div class="font-bold text-5xl text-900 mb-5 text-center">Blog Sobre Escorts Premium</div>
-    <div class="grid nogutter">
-      <a class="col-12 lg:col-4 p-3 no-underline" href="https://verificadas.cl/primer-encuentro-con-una-escort-de-lujo">
+  <div class="font-bold text-5xl text-900 mb-5 text-center">Blog Sobre Escorts Premium</div>
+  <div class="grid nogutter">
+    <div class="col-12 lg:col-4 p-3 no-underline" *ngFor="let blog of this.blogs">
+      <a class="no-underline" [href]="'https://verificadas.cl/blog/' + blog.id">
         <div class="shadow-2 border-round h-full surface-card cursor-pointer">
           <div class="p-4">
-            <span class="block font-medium text-blue-600 mb-3">Primera vez</span>
+            <span class="block font-medium text-blue-600 mb-3">{{ blog.category }}</span>
             <div class="text-xl text-900 font-medium mb-3 line-height-3">
-              Asegurando un Encuentro Perfecto: Consejos para Tu Primera Cita con una Escort de Lujo
+              {{ blog.title }}
             </div>
             <div class="line-height-3 mb-3 text-700">
-              Explora consejos esenciales para una interacción impecable con una escort premium en tu primer encuentro. Desde la puntualidad y la higiene hasta el
-              respeto y la cortesía, aprende cómo hacer que tu reunión inicial sea suave y memorable. Ideal para aquellos que buscan experiencias con escorts VIP
-              en entornos de lujo.
-            </div>
-          </div>
-        </div>
-      </a>
-      <a class="col-12 lg:col-4 p-3 no-underline " href="https://verificadas.cl/seguridad-y-verificadas-santiago">
-        <div class="shadow-2 border-round h-full surface-card cursor-pointer">
-          <div class="p-4 flex flex-column">
-            <span class="block font-medium text-pink-600 mb-3">Seguridad</span>
-            <div class="text-xl text-900 font-medium mb-3 line-height-3">
-              Seguridad Garantizada: Por Qué Verificadas.cl es la Plataforma Más Segura para Encontrar Escorts en Santiago Oriente
-            </div>
-            <div class="line-height-3 mb-3 text-700">
-              Explora cómo Verificadas.cl garantiza la seguridad y autenticidad en la publicación de perfiles de acompañantes independientes en las zonas más
-              exclusivas de Santiago Oriente. Descubre nuestro riguroso proceso de verificación que asegura interacciones seguras y confiables en Las Condes,
-              Vitacura y Lo Barnechea.
-            </div>
-          </div>
-        </div>
-      </a>
-      <a class="col-12 lg:col-4 p-3 no-underline" href="https://verificadas.cl/escorts-en-santiago-oriente">
-        <div class="shadow-2 border-round h-full surface-card cursor-pointer">
-          <div class="p-4">
-            <span class="block font-medium text-orange-600 mb-3">Zonas</span>
-            <div class="text-xl text-900 font-medium mb-3 line-height-3">Descubre la Exclusividad de Santiago Oriente: Las Condes, Vitacura y Lo Barnechea</div>
-            <div class="line-height-3 mb-3 text-700">
-              Explora las zonas más exclusivas de Santiago Oriente —Las Condes, Vitacura y Lo Barnechea— y descubre por qué representan el pináculo de lujo y
-              seguridad. Aprende cómo Verificadas.cl facilita encuentros con acompañantes verificadas en estos distritos distinguidos, garantizando experiencias
-              de alta calidad y máxima discreción.
+              {{ blog.shortDescription }}
             </div>
           </div>
         </div>
       </a>
     </div>
   </div>
-  
+</div>

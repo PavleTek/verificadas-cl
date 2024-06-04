@@ -11,6 +11,7 @@ import { BlogSecondComponent } from './blog-second/blog-second.component';
 import { BlogThirdComponent } from './blog-third/blog-third.component';
 import { EntryComponent } from './entry/entry.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { BlogViewComponent } from './blog-view/blog-view.component';
 
 export const routes: Routes = [
   {
@@ -66,8 +67,8 @@ export const routes: Routes = [
     component: BlogComponent,
   },
   {
-    path: 'blog/',
-    redirectTo: 'blog',
+    path: 'blog/:id',
+    component: BlogViewComponent,
   },
   {
     path: 'primer-encuentro-con-una-escort-de-lujo',

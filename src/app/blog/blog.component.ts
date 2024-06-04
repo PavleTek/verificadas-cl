@@ -1,16 +1,29 @@
 import { Component } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
+import { MainService } from '../main.service';
+import { CommonModule } from '@angular/common';
+import { Blog } from '../types';
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss',
 })
 export class BlogComponent {
-  constructor(private titleService: Title, private metaService: Meta) {}
+  blogs: Blog[] = [];
+  constructor(private titleService: Title, private metaService: Meta, private mainService: MainService) {}
+
+  async getAllBlogs() {
+    const response = await this.mainService.getAllBlogs();
+    if (response.status === 200) {
+      this.blogs = response.data;
+    }
+  }
+
   ngOnInit() {
+    this.getAllBlogs();
     this.titleService.setTitle('Blog Escorts Veririficadas');
     this.metaService.updateTag({
       name: 'description',
