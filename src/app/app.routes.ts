@@ -9,7 +9,6 @@ import { GirlPageComponent } from './girl-page/girl-page.component';
 import { BlogOneComponent } from './blog-one/blog-one.component';
 import { BlogSecondComponent } from './blog-second/blog-second.component';
 import { BlogThirdComponent } from './blog-third/blog-third.component';
-import { EntryComponent } from './entry/entry.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BlogViewComponent } from './blog-view/blog-view.component';
 
@@ -21,10 +20,6 @@ export const routes: Routes = [
   {
     path: 'escorts',
     component: MainUserViewComponent,
-  },
-  {
-    path: '',
-    redirectTo: 'escorts',
   },
   {
     path: 'escorts/',
@@ -109,6 +104,11 @@ export const routes: Routes = [
   {
     path: 'notFound/',
     redirectTo: 'notFound',
+  },
+  {
+    path: '',
+    redirectTo: 'escorts',
+    pathMatch: 'full'
   },
   { path: '**', redirectTo: '/escorts' },
 ];

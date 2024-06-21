@@ -1,19 +1,27 @@
 <ng-container *ngIf="allGirls.length !== 0">
-  <app-filter></app-filter>
-  <p-divider class="w-full"></p-divider>
-  <app-product-grid></app-product-grid>
+  <div [ngClass]="{'opaque': showAgeDialog}">
+    <app-filter></app-filter>
+    <p-divider class="w-full"></p-divider>
+    <app-product-grid></app-product-grid>
+  </div>
 </ng-container>
-<p-dialog [(visible)]="showAgeDialog" appendTo="body" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '40vw'}" [closable]="false" [showHeader]="false">
-    <div class="flex flex-column align-items-center my-4">
-        <div class="font-medium text-2xl text-900">Confirmación de edad</div>
+<p-dialog
+  [(visible)]="showAgeDialog"
+  appendTo="body"
+  [modal]="true"
+  [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+  [style]="{ width: '40vw' }"
+  [closable]="false"
+  [showHeader]="false"
+>
+  <div class="flex flex-column align-items-center my-4">
+    <div class="font-medium text-2xl text-900">Confirmación de edad</div>
+  </div>
+  <p class="line-height-3 p-0 m-0 text-center">Este sitio web contiene material restringido a menores de edad.</p>
+  <ng-template pTemplate="footer">
+    <div class="border-top-1 surface-border pt-3 flex">
+      <button pButton pRipple icon="pi pi-times" (click)="redirectToGoogle()" label="Soy Menor, Salir" class="p-button-outlined w-6 mr-2"></button>
+      <button pButton pRipple icon="pi pi-check" (click)="setAgeConfirmation()" label="Declaro ser mayor de 18 años" class="w-6 ml-2"></button>
     </div>
-    <p class="line-height-3 p-0 m-0 text-center">
-        Este sitio web contiene material restringido a menores de edad.
-    </p>
-    <ng-template pTemplate="footer">
-        <div class=" border-top-1 surface-border pt-3 flex">
-            <button pButton pRipple icon="pi pi-times" (click)="redirectToGoogle()" label="Soy Menor, Salir" class="p-button-outlined w-6 mr-2"></button>
-            <button pButton pRipple icon="pi pi-check" (click)="setAgeConfirmation()" label="Declaro ser mayor de 18 años" class="w-6 ml-2"></button>
-        </div>
-    </ng-template>
+  </ng-template>
 </p-dialog>
