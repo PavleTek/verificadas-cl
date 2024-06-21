@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InternalService } from '../internal.service';
 import { MainService } from '../main.service';
+import { DialogModule } from 'primeng/dialog';
 import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
 import { City, Girl, Service, SpecificLocation } from '../types';
 import { ProductGridComponent } from '../product-grid/product-grid.component';
 import { FilterComponent } from '../filter/filter.component';
@@ -13,11 +15,13 @@ import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-main-user-view',
   standalone: true,
-  imports: [DividerModule, FilterComponent, ProductGridComponent, CommonModule],
+  imports: [DividerModule, FilterComponent, ProductGridComponent, ButtonModule, CommonModule, DialogModule],
   templateUrl: './main-user-view.component.html',
   styleUrl: './main-user-view.component.scss',
 })
 export class MainUserViewComponent {
+  showAgeDialog: boolean = false;
+
   cities: City[] = [];
   activeCity: City | undefined;
 
@@ -95,9 +99,46 @@ export class MainUserViewComponent {
     }
   }
 
+  redirectToGoogle() {
+    window.location.href = 'https://www.google.com';
+  }
+
+  setAgeConfirmation() {
+    const now = new Date();
+    const expiryTime = now.getTime() + 4 * 60 * 60 * 1000;
+    const ageConfirmation = {
+      value: true,
+      expiry: expiryTime,
+    };
+    localStorage.setItem('ageConfirmation', JSON.stringify(ageConfirmation));
+    this.showAgeDialog = false;
+  }
+
+  checkAgeConfirmation() {
+    const ageConfirmation = localStorage.getItem('ageConfirmation');
+    console.log(ageConfirmation);
+    if (ageConfirmation) {
+      const parsed = JSON.parse(ageConfirmation);
+      console.log(parsed, 'parsed');
+      const now = new Date().getTime();
+      if (parsed.expiry > now) {
+        this.showAgeDialog = false;
+      } else {
+        this.showAgeDialog = true;
+        localStorage.removeItem('ageConfirmation');
+      }
+    } else {
+      this.showAgeDialog = true;
+    }
+  }
+
   async ngOnInit() {
     this.titleService.setTitle('Escorts verificadas Santiago');
-    this.metaService.updateTag({ name: 'description', content: 'Explora escorts verificadas en Santiago. Perfiles verificados, las mejores acompañantes en Santiago Oriente.' });
+    this.metaService.updateTag({
+      name: 'description',
+      content: 'Explora escorts verificadas en Santiago. Perfiles verificados, las mejores acompañantes en Santiago Oriente.',
+    });
+    this.checkAgeConfirmation();
     try {
       if (this.allGirls.length <= 1) {
         const params = await firstValueFrom(this.route.params);

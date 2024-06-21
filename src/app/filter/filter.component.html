@@ -19,18 +19,6 @@
       ></p-multiSelect>
       <p-multiSelect
         [showToggleAll]="false"
-        [options]="allSpecificLocations"
-        [(ngModel)]="selectedSpecificLocaitons"
-        placeholder="Ubicaciones"
-        (onChange)="updateSelectedSpecificLocations()"
-        optionLabel="name"
-        styleClass="w-full"
-        [maxSelectedLabels]="3"
-        selectedItemsLabel="{0} Ubicaciones seleccionadas"
-        class="flex-auto lg:flex-1 mb-3 lg:mt-0 w-full mr-0 lg:mr-4 text-900"
-      ></p-multiSelect>
-      <p-multiSelect
-        [showToggleAll]="false"
         [options]="otherFilters"
         [(ngModel)]="selectedOtherFilters"
         placeholder="Otros Filtros"

@@ -23,6 +23,10 @@ export const routes: Routes = [
     component: MainUserViewComponent,
   },
   {
+    path: '',
+    redirectTo: 'escorts',
+  },
+  {
     path: 'escorts/',
     redirectTo: 'escorts',
   },
@@ -105,10 +109,6 @@ export const routes: Routes = [
   {
     path: 'notFound/',
     redirectTo: 'notFound',
-  },
-  {
-    path: '',
-    component: EntryComponent,
   },
   { path: '**', redirectTo: '/escorts' },
 ];
