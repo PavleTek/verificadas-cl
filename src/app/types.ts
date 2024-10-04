@@ -206,15 +206,35 @@ export type Verification = {
   lastname: string; // implmented in verifcation Page
   bday: string; // implemented in verification Page
   rut: string | null; // implemented In Verification Page
+  scheduledLink: string | null;
   verificationDate: string | null; // backEnd Implementation
   verifiedBy: number | null; // backEndImplementation
   girlId: number; // not editable
+};
+
+export type AppNotification = {
+  id: number;
+  type: string;
+  fromUserId: number;
+  date: Date;
+  searchId: number;
+};
+
+export type AnounceRequest = {
+  id: number;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  paymentTier: string;
+  message: string;
 };
 
 export type Service = {
   id?: number;
   name: string;
   description: string;
+  metaTitle?: string;
+  metaDescription?: string;
   edit?: boolean;
   new?: boolean;
 };
@@ -233,6 +253,8 @@ export type Blog = {
 export type City = {
   id?: number;
   name: string;
+  metaTitle?: string;
+  metaDescription?: string;
   edit?: boolean;
   new?: boolean;
 };
@@ -240,6 +262,8 @@ export type City = {
 export type SpecificLocation = {
   id?: number;
   name: string;
+  metaTitle?: string;
+  metaDescription?: string;
   edit?: boolean;
   new?: boolean;
 };
@@ -247,6 +271,8 @@ export type SpecificLocation = {
 export type Ethnicity = {
   id?: number;
   name: string;
+  metaTitle?: string;
+  metaDescription?: string;
   edit?: boolean;
   new?: boolean;
 };
@@ -254,6 +280,8 @@ export type Ethnicity = {
 export type Nationality = {
   id?: number;
   name: string;
+  metaTitle?: string;
+  metaDescription?: string;
   edit?: boolean;
   new?: boolean;
 };
