@@ -41,7 +41,10 @@ export class ProductGridComponent {
     });
     this.internalService.specificLocationsData.subscribe((data) => {
       if (data !== undefined) {
-        this.links = data;
+        const filteredData = data.filter((location) => {
+          return location.name !== 'No Especificar';
+        });
+        this.links = filteredData;
       }
     });
   }

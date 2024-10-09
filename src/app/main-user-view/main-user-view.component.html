@@ -1,5 +1,10 @@
 <ng-container *ngIf="allGirls.length !== 0">
-  <div [ngClass]="{'opaque': showAgeDialog}">
+  <div [ngClass]="{ opaque: showAgeDialog }">
+    <div class="flex-column">
+      <h1 class="text-center">Title</h1>
+      <p class="text-center w-full">Las mejores escorts aca va la meta description</p>
+    </div>
+    <p-divider class="w-full"></p-divider>
     <app-filter></app-filter>
     <p-divider class="w-full"></p-divider>
     <app-product-grid></app-product-grid>

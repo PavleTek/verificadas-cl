@@ -40,6 +40,10 @@ export class MainUserViewComponent {
   activeGirl: Girl | undefined = undefined;
   filteredGirls: Girl[] = [];
 
+  // SEO Logic
+  title: string = '';
+  Description: string = '';
+
   constructor(
     private mainService: MainService,
     private route: ActivatedRoute,
