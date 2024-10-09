@@ -7,10 +7,18 @@
   <div class="col-12 md:col-6 lg:col-3 mt-4 lg:mt-0 lg:pl-4 flex flex-column">
     <span class="text-900 text-xl font-medium block">Empresa</span>
     <ul class="list-none p-0">
-      <li><a tabindex="0" href="https://verificadas.cl/about" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline">Nosotros</a></li>
-      <li><a tabindex="0" href="https://verificadas.cl/blog" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline">Blog</a></li>
       <li>
-        <a tabindex="0" href="https://verificadas.cl/contact" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline">Contacto</a>
+        <a tabindex="0" [href]="baseAccessUrl + '/about'" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline"
+          >Nosotros</a
+        >
+      </li>
+      <li>
+        <a tabindex="0" [href]="baseAccessUrl + '/blog'" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline">Blog</a>
+      </li>
+      <li>
+        <a tabindex="0" [href]="baseAccessUrl + '/contact'" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline"
+          >Contacto</a
+        >
       </li>
     </ul>
   </div>
@@ -26,10 +34,14 @@
         >
       </li>
       <li>
-        <a tabindex="0" href="https://verificadas.cl/prices" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline">Precios</a>
+        <a tabindex="0" [href]="baseAccessUrl + '/prices'" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline"
+          >Precios</a
+        >
       </li>
       <li>
-        <a tabindex="0" href="https://verificadas.cl/anunciate" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline">Anunciate</a>
+        <a tabindex="0" [href]="baseAccessUrl + '/anunciate'" class="text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block no-underline"
+          >Anunciate</a
+        >
       </li>
     </ul>
   </div>

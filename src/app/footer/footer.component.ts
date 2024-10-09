@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
+  baseAccessUrl = environment.baseAccessUrl;
   currentYear: number = 2024;
   description: string =
     'Verificadas.cl es un sitio web de modalidad unicamente publicitaria\n Toda Escort y/o Masajista presente en la pagina fue verificada presencialmente y es mayor de 18 años';

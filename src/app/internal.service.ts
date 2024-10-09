@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Girl, Service, SpecificLocation, PaymentTier, City } from './types';
+import { Girl, Service, SpecificLocation, PaymentTier, City, Nationality, Ethnicity } from './types';
 import { formatGirlImagesToUrls, formatEconomicGirlNames, getImageUrlFromImageName } from './helper-functions';
 
 interface BasicFilterOption {
@@ -16,6 +16,8 @@ export class InternalService {
   private regularGirls = new BehaviorSubject<any[]>([]);
   private economicGirls = new BehaviorSubject<any[]>([]);
   private allServices = new BehaviorSubject<Service[]>([]);
+  private allNationalities = new BehaviorSubject<Nationality[]>([]);
+  private allEthnicities = new BehaviorSubject<Ethnicity[]>([]);
   private allCities = new BehaviorSubject<City[]>([]);
   private activeCity = new BehaviorSubject<City | null>(null);
   private allSpecificLocations = new BehaviorSubject<SpecificLocation[]>([]);
@@ -29,6 +31,8 @@ export class InternalService {
   regularGirlsData = this.regularGirls.asObservable();
   economicGirlsData = this.economicGirls.asObservable();
   allServicesData = this.allServices.asObservable();
+  allNationalitiesData = this.allNationalities.asObservable();
+  allEthnicitiesData = this.allEthnicities.asObservable();
   allCitiesData = this.allCities.asObservable();
   activeCityData = this.activeCity.asObservable();
   specificLocationsData = this.allSpecificLocations.asObservable();
@@ -118,6 +122,14 @@ export class InternalService {
 
   updateServices(data: Service[]) {
     this.allServices.next(data);
+  }
+
+  updateNationalities(data: Service[]) {
+    this.allNationalities.next(data);
+  }
+
+  updateEthnicities(data: Service[]) {
+    this.allEthnicities.next(data);
   }
 
   udpateCities(data: City[]) {

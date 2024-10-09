@@ -73,6 +73,32 @@ export class MainService {
     }
   }
 
+  async getAllNationalities(): Promise<any> {
+    try {
+      const response = await this.http.get<Response>(`${this.baseUrl}/girl-api/nationality`).toPromise();
+      if (response) {
+        this.internalService.updateNationalities(response.data);
+      }
+      return response;
+    } catch (error) {
+      console.error('Error updating nationalities:', error);
+      throw error;
+    }
+  }
+
+  async getAllEthnicities(): Promise<any> {
+    try {
+      const response = await this.http.get<Response>(`${this.baseUrl}/girl-api/ethnicity`).toPromise();
+      if (response) {
+        this.internalService.updateEthnicities(response.data);
+      }
+      return response;
+    } catch (error) {
+      console.error('Error updating ethnicities:', error);
+      throw error;
+    }
+  }
+
   async getAllSpecificLocations(): Promise<any> {
     try {
       const response = await this.http.get<Response>(`${this.baseUrl}/girl-api/specificLocation`).toPromise();
@@ -110,6 +136,8 @@ export class MainService {
       }
       await this.getAllSpecificLocations();
       await this.getAllServices();
+      await this.getAllNationalities();
+      await this.getAllEthnicities();
     } catch (error) {
       console.error('Error:', error);
       throw error;
@@ -122,6 +150,8 @@ export class MainService {
       await this.getGirlsByCityId(activeCity.id);
       await this.getAllSpecificLocations();
       await this.getAllServices();
+      await this.getAllNationalities();
+      await this.getAllEthnicities();
     } catch (error) {
       console.error('Error:', error);
       throw error;

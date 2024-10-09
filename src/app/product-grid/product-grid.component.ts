@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
-import { Girl } from '../types';
+import { Girl, Service, SpecificLocation, City, Ethnicity, Nationality } from '../types';
+import { ChipModule } from 'primeng/chip';
+import { TooltipModule } from 'primeng/tooltip';
 import { InternalService } from '../internal.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 import { formatGirlImagesToUrls, formatName } from '../helper-functions';
 
 @Component({
   selector: 'app-product-grid',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ChipModule, TooltipModule],
   templateUrl: './product-grid.component.html',
   styleUrl: './product-grid.component.scss',
 })
@@ -16,6 +19,9 @@ export class ProductGridComponent {
   premiumAndSpecialGirls: Girl[] = [];
   regularGirls: any[] = [];
   economicGirls: any[] = [];
+  // Arrays For Links
+  links: (Service | Ethnicity | SpecificLocation | Nationality)[] = [];
+  baseAccessUrl = environment.baseAccessUrl;
 
   constructor(private internalService: InternalService, private router: Router) {
     this.internalService.premiumAndSpecialGirlsData.subscribe((data) => {
@@ -31,6 +37,11 @@ export class ProductGridComponent {
     this.internalService.economicGirlsData.subscribe((data) => {
       if (data !== undefined) {
         this.economicGirls = data;
+      }
+    });
+    this.internalService.specificLocationsData.subscribe((data) => {
+      if (data !== undefined) {
+        this.links = data;
       }
     });
   }

@@ -7,7 +7,12 @@
           <div class="p-1 h-full">
             <div class="shadow-2 p-2 md:p-3 surface-card border-round h-full">
               <div class="relative mb-3 image-container">
-                <img [src]="girl.images.bluredFace[0]" [alt]="'Main display image for escort' + girl.name" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
+                <img
+                  [src]="girl.images.bluredFace[0]"
+                  [alt]="'Main display image for escort' + girl.name"
+                  *ngIf="girl.bluredFace; else elseBluredFace"
+                  class="display-image border-round"
+                />
                 <ng-template #elseBluredFace>
                   <img [src]="girl.images.active[0]" [alt]="'Main display image for escort' + girl.name" class="display-image border-round" />
                 </ng-template>
@@ -215,7 +220,12 @@
               <div class="h-full">
                 <div class="shadow-2 p-2 surface-card border-round h-full">
                   <div class="relative mb-1 regular-image-container">
-                    <img [src]="girlPair[0].images.bluredFace[0]" [alt]="'Main display image for escort' + girlPair[0].name" *ngIf="girlPair[0].bluredFace; else elseBluredFace" class="display-image border-round" />
+                    <img
+                      [src]="girlPair[0].images.bluredFace[0]"
+                      [alt]="'Main display image for escort' + girlPair[0].name"
+                      *ngIf="girlPair[0].bluredFace; else elseBluredFace"
+                      class="display-image border-round"
+                    />
                     <ng-template #elseBluredFace>
                       <img [src]="girlPair[0].images.active[0]" [alt]="'Main display image for escort' + girlPair[0].name" class="display-image border-round" />
                     </ng-template>
@@ -238,7 +248,12 @@
               <div class="h-full">
                 <div class="shadow-2 p-2 surface-card border-round h-full">
                   <div class="relative mb-1 regular-image-container">
-                    <img [src]="girlPair[1].images.bluredFace[0]" [alt]="'Main display image for escort' + girlPair[1].name" *ngIf="girlPair[1].bluredFace; else elseBluredFace" class="display-image border-round" />
+                    <img
+                      [src]="girlPair[1].images.bluredFace[0]"
+                      [alt]="'Main display image for escort' + girlPair[1].name"
+                      *ngIf="girlPair[1].bluredFace; else elseBluredFace"
+                      class="display-image border-round"
+                    />
                     <ng-template #elseBluredFace>
                       <img [src]="girlPair[1].images.active[0]" [alt]="'Main display image for escort' + girlPair[1].name" class="display-image border-round" />
                     </ng-template>
@@ -270,7 +285,12 @@
                 <div class="p-1 h-full">
                   <div class="shadow-2 py-1 px-2 surface-card border-round h-full">
                     <div class="relative pb-1 economic-image-container">
-                      <img [src]="girl.images.bluredFace[0]" [alt]="'Main display image for escort' + girl.name" *ngIf="girl.bluredFace; else elseBluredFace" class="display-image border-round" />
+                      <img
+                        [src]="girl.images.bluredFace[0]"
+                        [alt]="'Main display image for escort' + girl.name"
+                        *ngIf="girl.bluredFace; else elseBluredFace"
+                        class="display-image border-round"
+                      />
                       <ng-template #elseBluredFace>
                         <img [src]="girl.images.active[0]" [alt]="'Main display image for escort' + girl.name" class="display-image border-round" />
                       </ng-template>
@@ -291,5 +311,19 @@
         </div>
       </ng-container>
     </ng-container>
+  </div>
+</div>
+<div class="border-top-1 surface-border justify-content-center">
+  <h3 class="text-center" >Busca escorts en las mejores ubicaciones.</h3>
+  <div class="p-4 flex flex-wrap align-items-center justify-content-center">
+    <div *ngFor="let link of links">
+      <div class="mb-2 mr-2">
+        <p-chip class="white-space-nowrap">
+          <a [href]="baseAccessUrl + '/escorts/ubicacion/' + link.id" class="text-600 hover:text-900 transition-duration-150 cursor-pointer block no-underline py-1">
+            <span class="chip-text font-semibold text-lg px-1 py-1">{{ link.name }}</span>
+          </a>
+        </p-chip>
+      </div>
+    </div>
   </div>
 </div>

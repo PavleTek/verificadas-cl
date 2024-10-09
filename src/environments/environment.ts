@@ -5,6 +5,7 @@
 //   baseMultimediaUrl: 'http://localhost:3100',
 //   baseImageUrl: 'http://localhost:3100/images',
 //   basePendingimageUrl: 'http://localhost:3100/pending-images',
+//   baseAccessUrl: 'http://localhost:4200',
 // };
 
 export const environment = {
@@ -14,4 +15,6 @@ export const environment = {
   baseMultimediaUrl: 'https://cdn.verificadas.cl',
   baseImageUrl: 'https://cdn.verificadas.cl/images',
   basePendingimageUrl: 'https://cdn.verificadas.cl/pending-images',
+  // baseAccessUrl: 'https://verificadas.cl',
+  baseAccessUrl: 'http://localhost:4200',
 };
