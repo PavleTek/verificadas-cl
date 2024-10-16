@@ -1,8 +1,8 @@
 <ng-container *ngIf="allGirls.length !== 0; else noGirlsTemplate">
   <div [ngClass]="{ opaque: showAgeDialog }">
     <div class="flex-column">
-      <h1 class="text-center">Title</h1>
-      <p class="text-center w-full">Las mejores escorts aca va la meta description</p>
+      <h1 class="text-center">{{ title }}</h1>
+      <p class="text-center w-full">{{ description }}</p>
     </div>
     <p-divider class="w-full"></p-divider>
     <app-filter></app-filter>
@@ -11,9 +11,19 @@
   </div>
 </ng-container>
 <ng-template #noGirlsTemplate>
-  <div class="no-girls-message">
-    <h2 class="text-center">Lo sentimos</h2>
-    <p class="text-center">No hemos encontrado escorts que cumplan con tu criterio.</p>
+  <div class="no-girls-message flex-column justify-center">
+    <h1 class="text-center">Lo sentimos</h1>
+    <p class="text-center w-full">No hemos encontrado escorts que cumplan con tu criterio de busqueda.</p>
+    <a class="w-full flex justify-content-center pb-3 no-underline" [href]="getThrowBackLink()">
+      <button
+        pButton
+        pRipple
+        icon="pi pi-arrow-left"
+        (click)="setAgeConfirmation()"
+        label="Volver a todas las escorts"
+        class="justify-center align-items-center"
+      ></button>
+    </a>
   </div>
 </ng-template>
 <p-dialog

@@ -10,6 +10,7 @@ import { City, Girl, SeoCategory, Service, SpecificLocation } from '../types';
 import { ProductGridComponent } from '../product-grid/product-grid.component';
 import { FilterComponent } from '../filter/filter.component';
 import { DividerModule } from 'primeng/divider';
+import { environment } from '../../environments/environment';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
@@ -41,10 +42,11 @@ export class MainUserViewComponent {
   filteredGirls: Girl[] = [];
 
   // SEO Logic
+  baseAccessUrl = environment.baseAccessUrl;
   allSeoCategories: SeoCategory[] = [];
   activeSpecificLocation: SpecificLocation | undefined = undefined;
   title: string = '';
-  Description: string = '';
+  description: string = '';
 
   constructor(
     private mainService: MainService,
@@ -119,6 +121,15 @@ export class MainUserViewComponent {
     window.location.href = 'https://www.google.com';
   }
 
+  getThrowBackLink() {
+    if (this.activeCity) {
+      const sanitizedCityName = this.activeCity.name.replace(/\s+/g, '-');
+      return `${this.baseAccessUrl}/escorts/${sanitizedCityName}`;
+    } else {
+      return `${this.baseAccessUrl}/escorts/`
+    }
+  }
+
   setAgeConfirmation() {
     const now = new Date();
     const expiryTime = now.getTime() + 4 * 60 * 60 * 1000;
@@ -150,6 +161,8 @@ export class MainUserViewComponent {
     console.log('this is being called');
     if (title && description) {
       console.log('this is happening');
+      this.title = title;
+      this.description = description;
       this.titleService.setTitle(title);
       this.metaService.updateTag({
         name: 'description',
@@ -187,11 +200,18 @@ export class MainUserViewComponent {
             }
           } else if (categoryName) {
             await this.mainService.initiateEverythingByCategory(cityName, categoryName);
-            if (this.activeSpecificLocation) {
-              this.updateTitleandMetaDescription(this.activeSpecificLocation.metaTitle, this.activeSpecificLocation.metaDescription);
+            if (this.allSeoCategories) {
+              console.log(this.allSeoCategories);
+              const selectedCategory = this.allSeoCategories.find((category) => category.name.toLowerCase() === categoryName.toLowerCase());
+              if (selectedCategory) {
+                this.updateTitleandMetaDescription(selectedCategory.metaTitle, selectedCategory.metaDescription);
+              }
             }
           } else if (cityName) {
             await this.mainService.initiateEverythingByCity(cityName);
+            if (this.activeCity) {
+              this.updateTitleandMetaDescription(this.activeCity.metaTitle, this.activeCity.metaDescription);
+            }
           } else {
             this.mainService.initiateEverything();
           }

@@ -45,15 +45,8 @@ export class HeaderComponent {
 
   updateActiveCity() {
     if (this.activeCity) {
-      this.internalService.updateActiveCity(this.activeCity);
-      this.internalService.updateSelectedCategory('');
-      this.mainService.getGirlsByCityId(this.activeCity.id);
-      if (this.activeCity.name !== 'Santiago') {
-        const sanitizedCityName = this.activeCity.name.replace(/\s+/g, '-');
-        this.router.navigate(['/escorts', sanitizedCityName]);
-      } else {
-        this.router.navigate(['/escorts']);
-      }
+      const sanitizedCityName = this.activeCity.name.replace(/\s+/g, '-');
+      window.location.href = `${this.baseAccessUrl}/escorts/${sanitizedCityName}`;
     }
   }
 
