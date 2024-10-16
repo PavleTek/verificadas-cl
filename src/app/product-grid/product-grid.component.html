@@ -314,12 +314,12 @@
   </div>
 </div>
 <div class="border-top-1 surface-border justify-content-center">
-  <h3 class="text-center" >Busca las mejores escorts en las mejores ubicaciones.</h3>
+  <h3 class="text-center">Busca las mejores escorts en las mejores ubicaciones.</h3>
   <div class="p-4 flex flex-wrap align-items-center justify-content-center">
     <div *ngFor="let link of links">
       <div class="mb-2 mr-2">
         <p-chip class="white-space-nowrap">
-          <a [href]="baseAccessUrl + '/escorts/ubicacion/' + link.id" class="text-600 hover:text-900 transition-duration-150 cursor-pointer block no-underline py-1">
+          <a [href]="getLinkUrl(link.name)" class="text-600 hover:text-900 transition-duration-150 cursor-pointer block no-underline py-1">
             <span class="chip-text font-semibold text-lg px-1 py-1">{{ link.name }}</span>
           </a>
         </p-chip>

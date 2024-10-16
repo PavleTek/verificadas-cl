@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { InternalService } from './internal.service';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
-import { City, Girl } from './types';
+import { City, Girl, GirlCategory } from './types';
 import { compileFactoryFunction } from '@angular/compiler';
 
 interface Response {
@@ -20,9 +20,26 @@ export class MainService {
 
   constructor(private http: HttpClient, private internalService: InternalService) {}
 
-  async getGirlsByCityId(cityId: string | number | any): Promise<any> {
+  async getGirlsByCityId(cityId: string | number | any, categoryName?: GirlCategory): Promise<any> {
     try {
       const response = await this.http.get<Girl[]>(`${this.baseUrl}/girl-api/girls/city/${cityId}`).toPromise();
+      if (response !== undefined && response !== null) {
+        if (categoryName) {
+          this.internalService.updateGirlData(response, categoryName);
+        } else {
+          this.internalService.updateGirlData(response);
+        }
+      }
+      return response;
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  }
+
+  async getGirlsBySpecificLocationName(locationName: string | any): Promise<any> {
+    try {
+      const response = await this.http.get<Girl[]>(`${this.baseUrl}/girl-api/girls/specificLocation/${locationName}`).toPromise();
       if (response !== undefined && response !== null) {
         this.internalService.updateGirlData(response);
       }
@@ -43,6 +60,18 @@ export class MainService {
     } catch (error) {
       console.error('Error:', error);
       throw error;
+    }
+  }
+
+  async getAllCategories(): Promise<any> {
+    try {
+      const response = await this.http.get<Response>(`${this.baseUrl}/girl-api/category`).toPromise();
+      if (response) {
+        this.internalService.updateSeoCategories(response.data);
+      }
+    } catch (error) {
+      console.error(`Error while fetching seo categories data`, error);
+      return error;
     }
   }
 
@@ -134,6 +163,7 @@ export class MainService {
       if (initialCity) {
         await this.getGirlsByCityId(initialCity.id);
       }
+      await this.getAllCategories();
       await this.getAllSpecificLocations();
       await this.getAllServices();
       await this.getAllNationalities();
@@ -156,6 +186,46 @@ export class MainService {
       console.error('Error:', error);
       throw error;
     }
+  }
+
+  async initiateEverythingBySpecificLocation(cityName: string, locationName: string): Promise<any> {
+    try {
+      const activeCity = await this.getAndSetCityByName(cityName);
+      await this.getGirlsBySpecificLocationName(locationName);
+      await this.getAllSpecificLocations();
+      await this.getAllServices();
+      await this.getAllNationalities();
+      await this.getAllEthnicities();
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  }
+
+  async initiateEverythingByCategory(cityName: string, categoryName: GirlCategory): Promise<any> {
+    try {
+      const activeCity = await this.getAndSetCityByName(cityName);
+      await this.getGirlsByCityId(activeCity.id, categoryName);
+      // this line sets the active category which is important for the header to work
+      this.internalService.updateSelectedCategory(categoryName);
+      await this.getAllSpecificLocations();
+      await this.getAllServices();
+      await this.getAllNationalities();
+      await this.getAllEthnicities();
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  }
+
+  filterGirlsByCategory(categoryName: string): void {
+    let allGirls: Girl[] = [];
+    this.internalService.allGirlsData.subscribe((data: Girl[]) => {
+      if (data) {
+        const filteredGirls = data.filter((girl: Girl) => girl.categories.includes(categoryName as GirlCategory));
+        allGirls = filteredGirls; // Assuming you want to set this.allGirls to the filtered list
+      }
+    });
   }
 
   async initiateEverythingGirlPage(girlId: number | string): Promise<any> {

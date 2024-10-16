@@ -1,10 +1,6 @@
 <div class="surface-overlay py-3 px-3 sm:px-6 shadow-2 flex align-items-center justify-content-between relative lg:static">
-  <a href="https://verificadas.cl/escorts" class="-ml-3 -mt-1 max-w-full cursor-pointer logo-img">
-    <img
-      src="../../assets/verificadasClHorizontal.png"
-      alt="Image"
-      height="75"
-    />
+  <a [href]="getHomePageLink()" class="-ml-3 -mt-1 max-w-full cursor-pointer logo-img">
+    <img src="../../assets/verificadasClHorizontal.png" alt="Image" height="75" />
   </a>
   <a pRipple class="cursor-pointer block lg:hidden text-700" pStyleClass="@next" enterFromClass="hidden" leaveToClass="hidden" [hideOnOutsideClick]="true">
     <i class="pi pi-bars text-4xl"></i>
@@ -16,39 +12,39 @@
     <ul class="list-none p-0 m-0 flex lg:align-items-center text-900 select-none flex-column lg:flex-row cursor-pointer">
       <li>
         <a
+          [href]="getLinkUrl(barbieCategory)"
           pRipple
-          class="flex px-0 lg:px-5 py-3 hover:text-purple-500 font-medium border-bottom-2 transition-duration-150 transition-colors"
+          class="flex px-0 lg:px-5 py-3 hover:text-purple-500 no-underline font-medium border-bottom-2 transition-duration-150 transition-colors"
           [ngClass]="{
             'text-purple-500 border-purple-500': activeCategory === barbieCategory,
             'text-600 border-transparent': activeCategory !== barbieCategory
           }"
-          (click)="selectActiveCategory(barbieCategory)"
         >
           <span class="text-xl">{{ barbieCategory }}</span>
         </a>
       </li>
       <li>
         <a
+          [href]="getLinkUrl(milfCategory)"
           pRipple
-          class="flex px-0 lg:px-5 py-3 hover:text-purple-500 font-medium border-bottom-2 transition-duration-150 transition-colors"
+          class="flex px-0 lg:px-5 py-3 hover:text-purple-500 no-underline font-medium border-bottom-2 transition-duration-150 transition-colors"
           [ngClass]="{
             'text-purple-500 border-purple-500': activeCategory === milfCategory,
             'text-600 border-transparent': activeCategory !== milfCategory
           }"
-          (click)="selectActiveCategory(milfCategory)"
         >
           <span class="text-xl">{{ milfCategory }}</span>
         </a>
       </li>
       <li>
         <a
+          [href]="getLinkUrl(massageCategory)"
           pRipple
-          class="flex px-0 lg:px-5 py-3 hover:text-purple-500 font-medium border-bottom-2 transition-duration-150 transition-colors"
+          class="flex px-0 lg:px-5 py-3 hover:text-purple-500 no-underline font-medium border-bottom-2 transition-duration-150 transition-colors"
           [ngClass]="{
             'text-purple-500 border-purple-500': activeCategory === massageCategory,
             'text-600 border-transparent': activeCategory !== massageCategory
           }"
-          (click)="selectActiveCategory(massageCategory)"
         >
           <span class="text-xl">{{ massageCategory }}</span>
         </a>

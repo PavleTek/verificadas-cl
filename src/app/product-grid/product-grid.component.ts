@@ -20,6 +20,7 @@ export class ProductGridComponent {
   regularGirls: any[] = [];
   economicGirls: any[] = [];
   // Arrays For Links
+  activeCity: City | any;
   links: (Service | Ethnicity | SpecificLocation | Nationality)[] = [];
   baseAccessUrl = environment.baseAccessUrl;
 
@@ -39,14 +40,27 @@ export class ProductGridComponent {
         this.economicGirls = data;
       }
     });
+    // Filters No Especificar name to not display it, then sanitizes names for the sake of the link
     this.internalService.specificLocationsData.subscribe((data) => {
       if (data !== undefined) {
-        const filteredData = data.filter((location) => {
-          return location.name !== 'No Especificar';
-        });
+        const filteredData = data.filter((location) => location.name !== 'No Especificar');
         this.links = filteredData;
       }
     });
+    // Gets the active city, this is important for the links
+    this.internalService.activeCityData.subscribe((data) => {
+      if (data) {
+        const sanitizedCityName = data.name.replace(/\s+/g, '-');
+        this.activeCity = data;
+        this.activeCity.name = sanitizedCityName;
+      }
+    });
+  }
+
+  getLinkUrl(linkName: string) {
+    const sanitizedCityName = this.activeCity.name.replace(/\s+/g, '-');
+    const sanitizedLinkName = linkName.replace(/\s+/g, '-');
+    return `${this.baseAccessUrl}/escorts/${sanitizedCityName}/ubicacion/${sanitizedLinkName}`;
   }
 
   goToGirlPage(girl: Girl) {

@@ -120,10 +120,8 @@ export class MainUserViewComponent {
 
   checkAgeConfirmation() {
     const ageConfirmation = localStorage.getItem('ageConfirmation');
-    console.log(ageConfirmation);
     if (ageConfirmation) {
       const parsed = JSON.parse(ageConfirmation);
-      console.log(parsed, 'parsed');
       const now = new Date().getTime();
       if (parsed.expiry > now) {
         this.showAgeDialog = false;
@@ -137,6 +135,7 @@ export class MainUserViewComponent {
   }
 
   async ngOnInit() {
+    // have to update this based on city, category, and specific location once I get them
     this.titleService.setTitle('Escorts verificadas Santiago');
     this.metaService.updateTag({
       name: 'description',
@@ -146,9 +145,22 @@ export class MainUserViewComponent {
     try {
       if (this.allGirls.length <= 1) {
         const params = await firstValueFrom(this.route.params);
+        const childParams = await firstValueFrom(this.route.firstChild?.params || this.route.params);
+
+        let cityName = params['cityName'];
+        let locationName = childParams['locationName'];
+        let categoryName = childParams['categoryName'];
+
+        if (cityName) cityName = cityName.replace(/-/g, ' ');
+        if (locationName) locationName = locationName.replace(/-/g, ' ');
+        if (categoryName) categoryName = categoryName.replace(/-/g, ' ');
+
         if (params) {
-          const cityName = params['cityName'];
-          if (cityName) {
+          if (locationName) {
+            await this.mainService.initiateEverythingBySpecificLocation(cityName, locationName);
+          } else if (categoryName) {
+            await this.mainService.initiateEverythingByCategory(cityName, categoryName);
+          } else if (cityName) {
             await this.mainService.initiateEverythingByCity(cityName);
           } else {
             this.mainService.initiateEverything();

@@ -29,6 +29,15 @@ export type PricingPlan = {
   discountMessage: string;
 };
 
+export type SeoCategory = {
+  id?: number;
+  name: string;
+  metaTitle: string;
+  metaDescription: string;
+  edit?: boolean;
+  new?: boolean;
+};
+
 export type Banner = {
   id: number;
   message: number;
@@ -73,7 +82,7 @@ export type Girl = {
     id: number;
     name: string;
   }; // added to html Missing Functionality
-  categories: GirlCategory[]; // should only allow change of order
+  categories: GirlCategory[];
   verificationId: number | null; // not going to be added for admin only
   city: {
     id: number;

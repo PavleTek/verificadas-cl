@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Girl, Service, SpecificLocation, PaymentTier, City, Nationality, Ethnicity } from './types';
+import { Girl, Service, SpecificLocation, PaymentTier, City, Nationality, Ethnicity, SeoCategory, GirlCategory } from './types';
 import { formatGirlImagesToUrls, formatEconomicGirlNames, getImageUrlFromImageName } from './helper-functions';
 
 interface BasicFilterOption {
@@ -19,6 +19,7 @@ export class InternalService {
   private allNationalities = new BehaviorSubject<Nationality[]>([]);
   private allEthnicities = new BehaviorSubject<Ethnicity[]>([]);
   private allCities = new BehaviorSubject<City[]>([]);
+  private allSeoCategories = new BehaviorSubject<SeoCategory[]>([]);
   private activeCity = new BehaviorSubject<City | null>(null);
   private allSpecificLocations = new BehaviorSubject<SpecificLocation[]>([]);
   private selectedServices = new BehaviorSubject<Service[]>([]);
@@ -34,6 +35,7 @@ export class InternalService {
   allNationalitiesData = this.allNationalities.asObservable();
   allEthnicitiesData = this.allEthnicities.asObservable();
   allCitiesData = this.allCities.asObservable();
+  allSeoCategoriesData = this.allSeoCategories.asObservable();
   activeCityData = this.activeCity.asObservable();
   specificLocationsData = this.allSpecificLocations.asObservable();
   selectedServicesData = this.selectedServices.asObservable();
@@ -58,8 +60,12 @@ export class InternalService {
     return finalGirlPairArray;
   }
 
-  updateGirlData(data: Girl[]) {
+  updateGirlData(data: Girl[], categoryName?: GirlCategory) {
+    // got to add category here
     if (data.length) {
+      if (categoryName) {
+        data = data.filter((girl) => girl.categories.includes(categoryName));
+      }
       const premiumAndSpecialGirls: Girl[] = [];
       let regularGirls: any[] = [];
       let economicGirls: any[] = [];
@@ -83,6 +89,11 @@ export class InternalService {
       this.premiumAndSpecialGirls.next(premiumAndSpecialGirls);
       this.regularGirls.next(regularGirls);
       this.economicGirls.next(economicGirls);
+    } else {
+      this.allGirls.next([]);
+      this.premiumAndSpecialGirls.next([]);
+      this.regularGirls.next([]);
+      this.economicGirls.next([]);
     }
   }
 
@@ -134,6 +145,10 @@ export class InternalService {
 
   udpateCities(data: City[]) {
     this.allCities.next(data);
+  }
+
+  updateSeoCategories(data: SeoCategory[]) {
+    this.allSeoCategories.next(data);
   }
 
   updateActiveCity(data: City) {

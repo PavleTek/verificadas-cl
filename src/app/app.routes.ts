@@ -16,14 +16,25 @@ export const routes: Routes = [
   {
     path: 'escorts/:cityName',
     component: MainUserViewComponent,
+    children: [
+      {
+        path: '',
+        component: MainUserViewComponent, // Displays the general city view
+      },
+      {
+        path: 'ubicacion/:locationName',
+        component: MainUserViewComponent, // Displays girls in a specific location
+      },
+      {
+        path: 'categoria/:categoryName',
+        component: MainUserViewComponent, // Displays girls of a specific category
+      }
+    ],
   },
   {
     path: 'escorts',
-    component: MainUserViewComponent,
-  },
-  {
-    path: 'escorts/',
-    redirectTo: 'escorts',
+    redirectTo: 'escorts/Santiago', // Optional default redirection to a city
+    pathMatch: 'full',
   },
   {
     path: 'escort-verificada/:id',

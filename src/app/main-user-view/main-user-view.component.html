@@ -1,4 +1,4 @@
-<ng-container *ngIf="allGirls.length !== 0">
+<ng-container *ngIf="allGirls.length !== 0; else noGirlsTemplate">
   <div [ngClass]="{ opaque: showAgeDialog }">
     <div class="flex-column">
       <h1 class="text-center">Title</h1>
@@ -10,6 +10,12 @@
     <app-product-grid></app-product-grid>
   </div>
 </ng-container>
+<ng-template #noGirlsTemplate>
+  <div class="no-girls-message">
+    <h2 class="text-center">Lo sentimos</h2>
+    <p class="text-center">No hemos encontrado escorts que cumplan con tu criterio.</p>
+  </div>
+</ng-template>
 <p-dialog
   [(visible)]="showAgeDialog"
   appendTo="body"
