@@ -6,7 +6,7 @@ import { MainService } from '../main.service';
 import { DialogModule } from 'primeng/dialog';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
-import { City, Girl, Service, SpecificLocation } from '../types';
+import { City, Girl, SeoCategory, Service, SpecificLocation } from '../types';
 import { ProductGridComponent } from '../product-grid/product-grid.component';
 import { FilterComponent } from '../filter/filter.component';
 import { DividerModule } from 'primeng/divider';
@@ -41,6 +41,8 @@ export class MainUserViewComponent {
   filteredGirls: Girl[] = [];
 
   // SEO Logic
+  allSeoCategories: SeoCategory[] = [];
+  activeSpecificLocation: SpecificLocation | undefined = undefined;
   title: string = '';
   Description: string = '';
 
@@ -79,6 +81,16 @@ export class MainUserViewComponent {
     this.internalService.activeCityData.subscribe((data) => {
       if (data) {
         this.activeCity = data;
+      }
+    });
+    this.internalService.allSeoCategoriesData.subscribe((data) => {
+      if (data) {
+        this.allSeoCategories = data;
+      }
+    });
+    this.internalService.activeSpecificLocationData.subscribe((data) => {
+      if (data) {
+        this.activeSpecificLocation = data;
       }
     });
   }
@@ -134,6 +146,18 @@ export class MainUserViewComponent {
     }
   }
 
+  updateTitleandMetaDescription(title: string | undefined, description: string | undefined) {
+    console.log('this is being called');
+    if (title && description) {
+      console.log('this is happening');
+      this.titleService.setTitle(title);
+      this.metaService.updateTag({
+        name: 'description',
+        content: description,
+      });
+    }
+  }
+
   async ngOnInit() {
     // have to update this based on city, category, and specific location once I get them
     this.titleService.setTitle('Escorts verificadas Santiago');
@@ -158,8 +182,14 @@ export class MainUserViewComponent {
         if (params) {
           if (locationName) {
             await this.mainService.initiateEverythingBySpecificLocation(cityName, locationName);
+            if (this.activeSpecificLocation) {
+              this.updateTitleandMetaDescription(this.activeSpecificLocation.metaTitle, this.activeSpecificLocation.metaDescription);
+            }
           } else if (categoryName) {
             await this.mainService.initiateEverythingByCategory(cityName, categoryName);
+            if (this.activeSpecificLocation) {
+              this.updateTitleandMetaDescription(this.activeSpecificLocation.metaTitle, this.activeSpecificLocation.metaDescription);
+            }
           } else if (cityName) {
             await this.mainService.initiateEverythingByCity(cityName);
           } else {

@@ -21,6 +21,7 @@ export class InternalService {
   private allCities = new BehaviorSubject<City[]>([]);
   private allSeoCategories = new BehaviorSubject<SeoCategory[]>([]);
   private activeCity = new BehaviorSubject<City | null>(null);
+  private activeSpecificLocation = new BehaviorSubject<SpecificLocation | null>(null);
   private allSpecificLocations = new BehaviorSubject<SpecificLocation[]>([]);
   private selectedServices = new BehaviorSubject<Service[]>([]);
   private selectedSpecificLocations = new BehaviorSubject<SpecificLocation[]>([]);
@@ -37,6 +38,7 @@ export class InternalService {
   allCitiesData = this.allCities.asObservable();
   allSeoCategoriesData = this.allSeoCategories.asObservable();
   activeCityData = this.activeCity.asObservable();
+  activeSpecificLocationData = this.activeSpecificLocation.asObservable();
   specificLocationsData = this.allSpecificLocations.asObservable();
   selectedServicesData = this.selectedServices.asObservable();
   selectedSpecificLocationsData = this.selectedSpecificLocations.asObservable();
@@ -153,6 +155,10 @@ export class InternalService {
 
   updateActiveCity(data: City) {
     this.activeCity.next(data);
+  }
+
+  updateActiveSpecificLocation(data: City) {
+    this.activeSpecificLocation.next(data);
   }
 
   updateSpecificLocations(data: SpecificLocation[]) {

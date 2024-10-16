@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { InternalService } from './internal.service';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
-import { City, Girl, GirlCategory } from './types';
+import { City, Girl, GirlCategory, SpecificLocation } from './types';
 import { compileFactoryFunction } from '@angular/compiler';
 
 interface Response {
@@ -128,11 +128,18 @@ export class MainService {
     }
   }
 
-  async getAllSpecificLocations(): Promise<any> {
+  async getAllSpecificLocations(activeLocationName?: string): Promise<any> {
     try {
       const response = await this.http.get<Response>(`${this.baseUrl}/girl-api/specificLocation`).toPromise();
       if (response) {
         this.internalService.updateSpecificLocations(response.data);
+        // Here I want that if a activeLocationName was passed, I watn to find it inside the Data and get the specific whole value
+        if (activeLocationName) {
+          const foundLocation = response.data.find((location: SpecificLocation) => location.name.toLowerCase() === activeLocationName.toLowerCase());
+          if (foundLocation) {
+            this.internalService.updateActiveSpecificLocation(foundLocation);
+          }
+        }
       }
       return response;
     } catch (error) {
@@ -163,7 +170,6 @@ export class MainService {
       if (initialCity) {
         await this.getGirlsByCityId(initialCity.id);
       }
-      await this.getAllCategories();
       await this.getAllSpecificLocations();
       await this.getAllServices();
       await this.getAllNationalities();
@@ -192,7 +198,7 @@ export class MainService {
     try {
       const activeCity = await this.getAndSetCityByName(cityName);
       await this.getGirlsBySpecificLocationName(locationName);
-      await this.getAllSpecificLocations();
+      await this.getAllSpecificLocations(locationName);
       await this.getAllServices();
       await this.getAllNationalities();
       await this.getAllEthnicities();
@@ -202,10 +208,15 @@ export class MainService {
     }
   }
 
+  async getActiveSeoCategory(categoryName: GirlCategory) {
+    
+  };
+
   async initiateEverythingByCategory(cityName: string, categoryName: GirlCategory): Promise<any> {
     try {
       const activeCity = await this.getAndSetCityByName(cityName);
       await this.getGirlsByCityId(activeCity.id, categoryName);
+      await this.getAllCategories();
       // this line sets the active category which is important for the header to work
       this.internalService.updateSelectedCategory(categoryName);
       await this.getAllSpecificLocations();
