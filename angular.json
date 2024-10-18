@@ -27,7 +27,7 @@
             "styles": ["src/styles.scss"],
             "scripts": [],
             "server": "src/main.server.ts",
-            "prerender": { "routesFile": "/opt/nodeServer/Verificadas-node-back/routes-ssr.txt", "discoverRoutes": true },
+            "prerender": { "routesFile": "routes-ssr.txt", "discoverRoutes": true },
             "ssr": {
               "entry": "server.ts"
             }
