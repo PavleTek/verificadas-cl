@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "prebuild": "cp /opt/nodeServer/Verificadas-node-back/routes-ssr.txt ./routes-ssr.txt",
+    "prebuild": "cp /opt/nodeServer/Verificadas-node-back/routes-ssr.txt /usr/share/nginx/html/verificadas-cl/routes-ssr.txt",
     "build": "npm run prebuild && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
