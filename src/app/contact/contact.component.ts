@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
@@ -11,13 +12,15 @@ import { Title, Meta } from '@angular/platform-browser';
 export class ContactComponent {
   mail: string = 'Contacto@Verificadas.cl';
 
-  constructor(private titleService: Title, private metaService: Meta) {}
+  constructor(private titleService: Title, private metaService: Meta, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   sendWhatsapp() {
     const phoneNumber = '56936696411';
     const message = 'Hola, tengo una consulta con su pagina Verificadas.cl, me podrian ayudar?';
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-    window.open(whatsappUrl, '_blank');
+    if (isPlatformBrowser(this.platformId)) {
+      window.open(whatsappUrl, '_blank');
+    }
   }
 
   ngOnInit() {

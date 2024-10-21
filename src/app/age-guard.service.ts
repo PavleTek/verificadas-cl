@@ -1,24 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AgeGuardService implements CanActivate {
-  constructor(private router: Router) {}
+export class AgeGuard implements CanActivate {
+  private isBrowser: boolean;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   canActivate(): boolean {
-    const isBrowser = typeof window !== 'undefined' && typeof localStorage !== 'undefined';
-    if (!isBrowser) {
-      this.router.navigate(['/age-verification']);
-      return false;
+    if (!this.isBrowser) {
+      // On the server (SSR), we allow the route to activate
+      return true;
     }
 
-    // Check the age verification flag from 'localStorage'
+    // Browser-only logic: Check the age verification flag from 'localStorage'
     const ageVerified = localStorage.getItem('ageVerified') === 'true';
 
-    // Redirect to age verification if not verified
     if (!ageVerified) {
+      // Redirect to age verification if not verified
       this.router.navigate(['/age-verification']);
       return false;
     }

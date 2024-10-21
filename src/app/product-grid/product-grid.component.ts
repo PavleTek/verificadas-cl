@@ -62,6 +62,7 @@ export class ProductGridComponent {
     const sanitizedLinkName = linkName.replace(/\s+/g, '-');
     return `${this.baseAccessUrl}/escorts/${sanitizedCityName}/ubicacion/${sanitizedLinkName}`;
   }
+  // comment to trigger build
 
   goToGirlPage(girl: Girl) {
     const girlId = girl.id;

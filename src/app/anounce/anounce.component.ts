@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MainService } from '../main.service';
 import { firstValueFrom } from 'rxjs';
@@ -6,7 +6,7 @@ import { MessageService } from 'primeng/api';
 import { Title, Meta } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputMaskModule } from 'primeng/inputmask';
@@ -35,7 +35,8 @@ export class AnounceComponent {
     private mainService: MainService,
     private messageService: MessageService,
     private titleService: Title,
-    private metaService: Meta
+    private metaService: Meta,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -46,7 +47,9 @@ export class AnounceComponent {
         'Solicita la publicación de tu perfil en nuestro sitio. Completa el formulario y aumenta tu visibilidad como escort verificada. Fácil, rápido y seguro.',
     });
     try {
-      window.scrollTo(0, 0);
+      if (isPlatformBrowser(this.platformId)) {
+        window.scrollTo(0, 0);
+      }
       const params = await firstValueFrom(this.route.params);
       if (params) {
         let paymentTier = params['paymentTier'];

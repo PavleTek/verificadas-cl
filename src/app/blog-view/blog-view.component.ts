@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { MainService } from '../main.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { Blog } from '../types';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -22,12 +22,15 @@ export class BlogViewComponent {
     private router: Router,
     private route: ActivatedRoute,
     private titleService: Title,
-    private metaService: Meta
+    private metaService: Meta,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   async ngOnInit() {
     try {
-      window.scrollTo(0, 0);
+      if (isPlatformBrowser(this.platformId)) {
+        window.scrollTo(0, 0);
+      }
       const params = await firstValueFrom(this.route.params);
       if (params) {
         let blogId = params['id'];

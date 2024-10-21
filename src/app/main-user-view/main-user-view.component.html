@@ -27,6 +27,7 @@
   </div>
 </ng-template>
 <p-dialog
+  *ngIf="isBrowser"
   [(visible)]="showAgeDialog"
   appendTo="body"
   [modal]="true"

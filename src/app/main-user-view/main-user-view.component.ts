@@ -1,10 +1,10 @@
 import { firstValueFrom } from 'rxjs';
-import { Component } from '@angular/core';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InternalService } from '../internal.service';
 import { MainService } from '../main.service';
 import { DialogModule } from 'primeng/dialog';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { City, Girl, SeoCategory, Service, SpecificLocation } from '../types';
 import { ProductGridComponent } from '../product-grid/product-grid.component';
@@ -22,6 +22,7 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class MainUserViewComponent {
   showAgeDialog: boolean = false;
+  isBrowser: boolean;
 
   cities: City[] = [];
   activeCity: City | undefined;
@@ -53,8 +54,10 @@ export class MainUserViewComponent {
     private route: ActivatedRoute,
     private internalService: InternalService,
     private titleService: Title,
-    private metaService: Meta
+    private metaService: Meta,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.internalService.allGirlsData.subscribe((data) => {
       if (data) {
         this.allGirls = data;
@@ -118,7 +121,9 @@ export class MainUserViewComponent {
   }
 
   redirectToGoogle() {
-    window.location.href = 'https://www.google.com';
+    if (isPlatformBrowser(this.platformId)) {
+      window.location.href = 'https://www.google.com';
+    }
   }
 
   getThrowBackLink() {
@@ -126,31 +131,31 @@ export class MainUserViewComponent {
       const sanitizedCityName = this.activeCity.name.replace(/\s+/g, '-');
       return `${this.baseAccessUrl}/escorts/${sanitizedCityName}`;
     } else {
-      return `${this.baseAccessUrl}/escorts/`
+      return `${this.baseAccessUrl}/escorts/`;
     }
   }
 
   setAgeConfirmation() {
-    const now = new Date();
-    const expiryTime = now.getTime() + 4 * 60 * 60 * 1000;
-    const ageConfirmation = {
-      value: true,
-      expiry: expiryTime,
-    };
-    localStorage.setItem('ageConfirmation', JSON.stringify(ageConfirmation));
-    this.showAgeDialog = false;
+    if (isPlatformBrowser(this.platformId)) {
+      const expiryTime = new Date().getTime() + 4 * 60 * 60 * 1000;
+      localStorage.setItem('ageConfirmation', JSON.stringify({ value: true, expiry: expiryTime }));
+      this.showAgeDialog = false;
+    }
   }
 
   checkAgeConfirmation() {
-    const ageConfirmation = localStorage.getItem('ageConfirmation');
-    if (ageConfirmation) {
-      const parsed = JSON.parse(ageConfirmation);
-      const now = new Date().getTime();
-      if (parsed.expiry > now) {
-        this.showAgeDialog = false;
+    if (isPlatformBrowser(this.platformId)) {
+      const ageConfirmation = localStorage.getItem('ageConfirmation');
+      if (ageConfirmation) {
+        const parsed = JSON.parse(ageConfirmation);
+        if (parsed.expiry > new Date().getTime()) {
+          this.showAgeDialog = false;
+        } else {
+          localStorage.removeItem('ageConfirmation');
+          this.showAgeDialog = true;
+        }
       } else {
         this.showAgeDialog = true;
-        localStorage.removeItem('ageConfirmation');
       }
     } else {
       this.showAgeDialog = true;
@@ -172,7 +177,6 @@ export class MainUserViewComponent {
   }
 
   async ngOnInit() {
-    // have to update this based on city, category, and specific location once I get them
     this.titleService.setTitle('Escorts verificadas Santiago');
     this.metaService.updateTag({
       name: 'description',

@@ -1,5 +1,6 @@
-import { Component, HostListener, SimpleChanges, ElementRef } from '@angular/core';
+import { Component, HostListener, SimpleChanges, ElementRef, PLATFORM_ID, Inject } from '@angular/core';
 import { Girl, EditLevel, Service } from '../types';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
@@ -66,7 +67,8 @@ export class GirlPageComponent {
     private router: Router,
     private breakpointObserver: BreakpointObserver,
     private titleService: Title,
-    private metaService: Meta
+    private metaService: Meta,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.internalService.allGirlsData.subscribe((data) => {
       if (data) {
@@ -85,14 +87,18 @@ export class GirlPageComponent {
   }
 
   callGirl(girl: Girl) {
-    window.location.href = `tel:${girl.phoneNumber}`;
+    if (isPlatformBrowser(this.platformId)) {
+      window.location.href = `tel:${girl.phoneNumber}`;
+    }
   }
 
   whatsappGirl(girl: Girl) {
     const phoneNumber = girl.phoneNumber;
     const message = `Hola ${girl.name}, he visto tu perfil en Verificadas.cl y me gustaria saber mas de ti!`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-    window.open(whatsappUrl, '_blank');
+    if (isPlatformBrowser(this.platformId)) {
+      window.open(whatsappUrl, '_blank');
+    }
   }
 
   showPriceDialog() {
@@ -217,7 +223,9 @@ export class GirlPageComponent {
 
   async girlInit() {
     try {
-      window.scrollTo(0, 0);
+      if (isPlatformBrowser(this.platformId)) {
+        window.scrollTo(0, 0);
+      }
       const params = await firstValueFrom(this.route.params);
       if (params) {
         let girlId = parseInt(params['id']);

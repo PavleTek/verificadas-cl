@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { GirlCategory, City } from '../types';
 import { MainService } from '../main.service';
 import { InternalService } from '../internal.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../../environments/environment';
@@ -25,7 +25,13 @@ export class HeaderComponent {
   milfCategory: string = GirlCategory.MADURAS;
   massageCategory: string = GirlCategory.MASAJISTAS;
   baseAccessUrl = environment.baseAccessUrl;
-  constructor(private internalService: InternalService, private route: ActivatedRoute, private router: Router, private mainService: MainService) {
+  constructor(
+    private internalService: InternalService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private mainService: MainService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
     this.internalService.allCitiesData.subscribe((data) => {
       if (data) {
         this.cities = data;
@@ -44,9 +50,11 @@ export class HeaderComponent {
   }
 
   updateActiveCity() {
-    if (this.activeCity) {
-      const sanitizedCityName = this.activeCity.name.replace(/\s+/g, '-');
-      window.location.href = `${this.baseAccessUrl}/escorts/${sanitizedCityName}`;
+    if (isPlatformBrowser(this.platformId)) {
+      if (this.activeCity) {
+        const sanitizedCityName = this.activeCity.name.replace(/\s+/g, '-');
+        window.location.href = `${this.baseAccessUrl}/escorts/${sanitizedCityName}`;
+      }
     }
   }
 
