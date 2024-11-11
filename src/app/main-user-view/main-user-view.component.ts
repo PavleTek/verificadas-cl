@@ -20,6 +20,7 @@ import { Title, Meta } from '@angular/platform-browser';
   templateUrl: './main-user-view.component.html',
   styleUrl: './main-user-view.component.scss',
 })
+
 export class MainUserViewComponent {
   showAgeDialog: boolean = false;
   isBrowser: boolean;
