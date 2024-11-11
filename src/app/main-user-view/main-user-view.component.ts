@@ -20,7 +20,6 @@ import { Title, Meta } from '@angular/platform-browser';
   templateUrl: './main-user-view.component.html',
   styleUrl: './main-user-view.component.scss',
 })
-
 export class MainUserViewComponent {
   showAgeDialog: boolean = false;
   isBrowser: boolean;
@@ -186,8 +185,11 @@ export class MainUserViewComponent {
     this.checkAgeConfirmation();
     try {
       if (this.allGirls.length <= 1) {
-        const params = await firstValueFrom(this.route.params);
-        const childParams = await firstValueFrom(this.route.firstChild?.params || this.route.params);
+        const [params, childParams] = await Promise.all([
+          firstValueFrom(this.route.params),
+          firstValueFrom(this.route.firstChild?.params || this.route.params),
+        ]);
+    
 
         let cityName = params['cityName'];
         let locationName = childParams['locationName'];
