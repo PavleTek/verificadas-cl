@@ -22,7 +22,6 @@ import { isPlainObject } from 'lodash';
   styleUrl: './main-user-view.component.scss',
 })
 export class MainUserViewComponent {
-  showAgeDialog: boolean = false;
   isBrowser: boolean;
 
   cities: City[] = [];
@@ -137,33 +136,6 @@ export class MainUserViewComponent {
     }
   }
 
-  setAgeConfirmation() {
-    if (isPlatformBrowser(this.platformId)) {
-      const expiryTime = new Date().getTime() + 4 * 60 * 60 * 1000;
-      localStorage.setItem('ageConfirmation', JSON.stringify({ value: true, expiry: expiryTime }));
-      this.showAgeDialog = false;
-    }
-  }
-
-  checkAgeConfirmation() {
-    if (isPlatformBrowser(this.platformId)) {
-      const ageConfirmation = localStorage.getItem('ageConfirmation');
-      if (ageConfirmation) {
-        const parsed = JSON.parse(ageConfirmation);
-        if (parsed.expiry > new Date().getTime()) {
-          this.showAgeDialog = false;
-        } else {
-          localStorage.removeItem('ageConfirmation');
-          this.showAgeDialog = true;
-        }
-      } else {
-        this.showAgeDialog = true;
-      }
-    } else {
-      this.showAgeDialog = true;
-    }
-  }
-
   updateTitleandMetaDescription(title: string | undefined, description: string | undefined) {
     console.log('this is being called');
     if (title && description) {
@@ -207,7 +179,6 @@ export class MainUserViewComponent {
         }
       }
     } else {
-      this.checkAgeConfirmation();
       try {
         // get params and figure out which page to load
         const [params, childParams] = await Promise.all([
