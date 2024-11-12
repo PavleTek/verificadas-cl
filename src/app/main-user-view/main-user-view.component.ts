@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { InternalService } from '../internal.service';
 import { MainService } from '../main.service';
 import { DialogModule } from 'primeng/dialog';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { City, Girl, SeoCategory, Service, SpecificLocation } from '../types';
 import { ProductGridComponent } from '../product-grid/product-grid.component';
@@ -12,6 +12,7 @@ import { FilterComponent } from '../filter/filter.component';
 import { DividerModule } from 'primeng/divider';
 import { environment } from '../../environments/environment';
 import { Title, Meta } from '@angular/platform-browser';
+import { isPlainObject } from 'lodash';
 
 @Component({
   selector: 'app-main-user-view',
@@ -81,6 +82,7 @@ export class MainUserViewComponent {
     this.internalService.allCitiesData.subscribe((data) => {
       if (data) {
         this.cities = data;
+        console.log(data, 'cities data');
       }
     });
     this.internalService.activeCityData.subscribe((data) => {
@@ -177,45 +179,65 @@ export class MainUserViewComponent {
   }
 
   async ngOnInit() {
-    this.titleService.setTitle('Escorts verificadas Santiago');
-    this.metaService.updateTag({
-      name: 'description',
-      content: 'Explora escorts verificadas en Santiago. Perfiles verificados, las mejores acompañantes en Santiago Oriente.',
-    });
-    this.checkAgeConfirmation();
-    try {
-      if (this.allGirls.length <= 1) {
+    if (isPlatformServer(this.platformId)) {
+      const [params, childParams] = await Promise.all([firstValueFrom(this.route.params), firstValueFrom(this.route.firstChild?.params || this.route.params)]);
+      let cityName = params['cityName'];
+      let locationName = childParams['locationName'];
+      let categoryName = childParams['categoryName'];
+      if (cityName) cityName = cityName.replace(/-/g, ' ');
+      if (locationName) locationName = locationName.replace(/-/g, ' ');
+      if (categoryName) categoryName = categoryName.replace(/-/g, ' ');
+      if (params) {
+        if (locationName) {
+          if (this.activeSpecificLocation) {
+            this.updateTitleandMetaDescription(this.activeSpecificLocation.metaTitle, this.activeSpecificLocation.metaDescription);
+          }
+        } else if (categoryName) {
+          if (this.allSeoCategories) {
+            const selectedCategory = this.allSeoCategories.find((category) => category.name.toLowerCase() === categoryName.toLowerCase());
+            if (selectedCategory) {
+              this.updateTitleandMetaDescription(selectedCategory.metaTitle, selectedCategory.metaDescription);
+            }
+          }
+        } else if (cityName) {
+          if (this.activeCity) {
+            console.log(this.activeCity, 'this active city');
+            this.updateTitleandMetaDescription(this.activeCity.metaTitle, this.activeCity.metaDescription);
+          }
+        }
+      }
+    } else {
+      this.checkAgeConfirmation();
+      try {
+        // get params and figure out which page to load
         const [params, childParams] = await Promise.all([
           firstValueFrom(this.route.params),
           firstValueFrom(this.route.firstChild?.params || this.route.params),
         ]);
-    
-
         let cityName = params['cityName'];
         let locationName = childParams['locationName'];
         let categoryName = childParams['categoryName'];
-
         if (cityName) cityName = cityName.replace(/-/g, ' ');
         if (locationName) locationName = locationName.replace(/-/g, ' ');
         if (categoryName) categoryName = categoryName.replace(/-/g, ' ');
 
+        // load differently based on result
         if (params) {
           if (locationName) {
-            await this.mainService.initiateEverythingBySpecificLocation(cityName, locationName);
+            this.mainService.initiateEverythingBySpecificLocation(cityName, locationName);
             if (this.activeSpecificLocation) {
               this.updateTitleandMetaDescription(this.activeSpecificLocation.metaTitle, this.activeSpecificLocation.metaDescription);
             }
           } else if (categoryName) {
-            await this.mainService.initiateEverythingByCategory(cityName, categoryName);
             if (this.allSeoCategories) {
-              console.log(this.allSeoCategories);
+              this.mainService.initiateEverythingByCategory(cityName, categoryName);
               const selectedCategory = this.allSeoCategories.find((category) => category.name.toLowerCase() === categoryName.toLowerCase());
               if (selectedCategory) {
                 this.updateTitleandMetaDescription(selectedCategory.metaTitle, selectedCategory.metaDescription);
               }
             }
           } else if (cityName) {
-            await this.mainService.initiateEverythingByCity(cityName);
+            this.mainService.initiateEverythingByCity(cityName);
             if (this.activeCity) {
               this.updateTitleandMetaDescription(this.activeCity.metaTitle, this.activeCity.metaDescription);
             }
@@ -225,9 +247,9 @@ export class MainUserViewComponent {
         } else {
           this.mainService.initiateEverything();
         }
+      } catch (error) {
+        console.error('Error loading all data', error);
       }
-    } catch (error) {
-      console.error('Error loading all data', error);
     }
   }
 }

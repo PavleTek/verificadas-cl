@@ -11,6 +11,7 @@ import { BlogSecondComponent } from './blog-second/blog-second.component';
 import { BlogThirdComponent } from './blog-third/blog-third.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BlogViewComponent } from './blog-view/blog-view.component';
+import { mainUserViewResolver } from './main-user-view/main-user-view.resolver';
 
 export const routes: Routes = [
   {
@@ -20,14 +21,18 @@ export const routes: Routes = [
       {
         path: '',
         component: MainUserViewComponent, // Displays the general city view
+        resolve: { data: mainUserViewResolver }
+        
       },
       {
         path: 'ubicacion/:locationName',
         component: MainUserViewComponent, // Displays girls in a specific location
+        resolve: { data: mainUserViewResolver }
       },
       {
         path: 'categoria/:categoryName',
         component: MainUserViewComponent, // Displays girls of a specific category
+        resolve: { data: mainUserViewResolver }
       }
     ],
   },
