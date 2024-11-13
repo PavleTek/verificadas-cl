@@ -81,7 +81,6 @@ export class MainUserViewComponent {
     this.internalService.allCitiesData.subscribe((data) => {
       if (data) {
         this.cities = data;
-        console.log(data, 'cities data');
       }
     });
     this.internalService.activeCityData.subscribe((data) => {
@@ -137,9 +136,7 @@ export class MainUserViewComponent {
   }
 
   updateTitleandMetaDescription(title: string | undefined, description: string | undefined) {
-    console.log('this is being called');
     if (title && description) {
-      console.log('this is happening');
       this.title = title;
       this.description = description;
       this.titleService.setTitle(title);
@@ -173,7 +170,6 @@ export class MainUserViewComponent {
           }
         } else if (cityName) {
           if (this.activeCity) {
-            console.log(this.activeCity, 'this active city');
             this.updateTitleandMetaDescription(this.activeCity.metaTitle, this.activeCity.metaDescription);
           }
         }

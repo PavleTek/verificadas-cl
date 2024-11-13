@@ -14,19 +14,13 @@ export const mainUserViewResolver: ResolveFn<Promise<void>> = async (route, stat
   const locationName = route.params['locationName']?.replace(/-/g, ' ');
   const categoryName = route.params['categoryName']?.replace(/-/g, ' ');
 
-  console.log(cityName, locationName, categoryName, 'city location category');
-
   if (cityName && locationName) {
-    console.log('initiate city specific location')
     return mainService.initiateEverythingBySpecificLocation(cityName, locationName);
   } else if (cityName && categoryName) {
-    console.log('initiate city category')
     return mainService.initiateEverythingByCategory(cityName, categoryName);
   } else if (cityName) {
-    console.log('initiate city only')
     return mainService.initiateEverythingByCity(cityName);
   } else {
-    console.log('initiate by nothing')
     return mainService.initiateEverything();
   }
 };

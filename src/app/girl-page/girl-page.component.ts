@@ -230,7 +230,7 @@ export class GirlPageComponent {
       if (params) {
         let girlId = parseInt(params['id']);
         if (girlId) {
-          if (this.allGirls.length <= 1) {
+          if (this.allGirls.length == 0) {
             await this.mainService.initiateEverythingGirlPage(girlId);
           }
           this.girl = this.allGirls.find((girl) => girl.id === girlId);

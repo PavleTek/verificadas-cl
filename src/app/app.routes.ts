@@ -12,6 +12,7 @@ import { BlogThirdComponent } from './blog-third/blog-third.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BlogViewComponent } from './blog-view/blog-view.component';
 import { mainUserViewResolver } from './main-user-view/main-user-view.resolver';
+import { girlPageResolver } from './girl-page/girl-page.resolver';
 
 export const routes: Routes = [
   {
@@ -21,19 +22,18 @@ export const routes: Routes = [
       {
         path: '',
         component: MainUserViewComponent, // Displays the general city view
-        resolve: { data: mainUserViewResolver }
-        
+        resolve: { data: mainUserViewResolver },
       },
       {
         path: 'ubicacion/:locationName',
         component: MainUserViewComponent, // Displays girls in a specific location
-        resolve: { data: mainUserViewResolver }
+        resolve: { data: mainUserViewResolver },
       },
       {
         path: 'categoria/:categoryName',
         component: MainUserViewComponent, // Displays girls of a specific category
-        resolve: { data: mainUserViewResolver }
-      }
+        resolve: { data: mainUserViewResolver },
+      },
     ],
   },
   {
@@ -44,6 +44,8 @@ export const routes: Routes = [
   {
     path: 'escort-verificada/:id',
     component: GirlPageComponent,
+    resolve: { data: girlPageResolver },
+
   },
   {
     path: 'about',
@@ -124,7 +126,7 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: 'escorts',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   { path: '**', redirectTo: '/escorts' },
 ];
