@@ -135,11 +135,11 @@ export class MainUserViewComponent {
     }
   }
 
-  updateTitleandMetaDescription(title: string | undefined, description: string | undefined) {
-    if (title && description) {
+  updateTitleandMetaDescription(title: string | undefined, metaTitle: string | undefined, description: string | undefined) {
+    if (title && metaTitle && description) {
       this.title = title;
       this.description = description;
-      this.titleService.setTitle(title);
+      this.titleService.setTitle(metaTitle);
       this.metaService.updateTag({
         name: 'description',
         content: description,
@@ -159,18 +159,22 @@ export class MainUserViewComponent {
       if (params) {
         if (locationName) {
           if (this.activeSpecificLocation) {
-            this.updateTitleandMetaDescription(this.activeSpecificLocation.metaTitle, this.activeSpecificLocation.metaDescription);
+            this.updateTitleandMetaDescription(
+              this.activeSpecificLocation.name,
+              this.activeSpecificLocation.metaTitle,
+              this.activeSpecificLocation.metaDescription
+            );
           }
         } else if (categoryName) {
           if (this.allSeoCategories) {
             const selectedCategory = this.allSeoCategories.find((category) => category.name.toLowerCase() === categoryName.toLowerCase());
             if (selectedCategory) {
-              this.updateTitleandMetaDescription(selectedCategory.metaTitle, selectedCategory.metaDescription);
+              this.updateTitleandMetaDescription(selectedCategory.name, selectedCategory.metaTitle, selectedCategory.metaDescription);
             }
           }
         } else if (cityName) {
           if (this.activeCity) {
-            this.updateTitleandMetaDescription(this.activeCity.metaTitle, this.activeCity.metaDescription);
+            this.updateTitleandMetaDescription(this.activeCity.name, this.activeCity.metaTitle, this.activeCity.metaDescription);
           }
         }
       }
@@ -193,20 +197,24 @@ export class MainUserViewComponent {
           if (locationName) {
             this.mainService.initiateEverythingBySpecificLocation(cityName, locationName);
             if (this.activeSpecificLocation) {
-              this.updateTitleandMetaDescription(this.activeSpecificLocation.metaTitle, this.activeSpecificLocation.metaDescription);
+              this.updateTitleandMetaDescription(
+                this.activeSpecificLocation.name,
+                this.activeSpecificLocation.metaTitle,
+                this.activeSpecificLocation.metaDescription
+              );
             }
           } else if (categoryName) {
             if (this.allSeoCategories) {
               this.mainService.initiateEverythingByCategory(cityName, categoryName);
               const selectedCategory = this.allSeoCategories.find((category) => category.name.toLowerCase() === categoryName.toLowerCase());
               if (selectedCategory) {
-                this.updateTitleandMetaDescription(selectedCategory.metaTitle, selectedCategory.metaDescription);
+                this.updateTitleandMetaDescription(selectedCategory.name, selectedCategory.metaTitle, selectedCategory.metaDescription);
               }
             }
           } else if (cityName) {
             this.mainService.initiateEverythingByCity(cityName);
             if (this.activeCity) {
-              this.updateTitleandMetaDescription(this.activeCity.metaTitle, this.activeCity.metaDescription);
+              this.updateTitleandMetaDescription(this.activeCity.name, this.activeCity.metaTitle, this.activeCity.metaDescription);
             }
           } else {
             this.mainService.initiateEverything();
